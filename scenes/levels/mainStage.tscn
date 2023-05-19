@@ -1,13 +1,51 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmy2o32g62fip"]
+[gd_scene load_steps=3 format=3 uid="uid://bmy2o32g62fip"]
 
 [ext_resource type="PackedScene" uid="uid://brsdovr5w0fe5" path="res://scenes/map/sashaMainStage.tscn" id="1_l63jw"]
+[ext_resource type="PackedScene" uid="uid://ofa5hq6n8tcb" path="res://scenes/ui/uiMainMenu.tscn" id="2_1kx0r"]
 
 [node name="mainStage" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.82951, 12.9259)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5.82951, -9.93135)
 
 [node name="sashaMainStage" parent="." instance=ExtResource("1_l63jw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.767583, 0.221394, 0.6015, -0.640942, 0.260468, 0.722045, 0.00318533, -0.939756, 0.341831, 0, 13.3667, 0)
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control2/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="Control2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="Control2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="uiMainMenu" parent="Control2/HBoxContainer/CenterContainer" instance=ExtResource("2_1kx0r")]
+layout_mode = 2
+size_flags_horizontal = 3

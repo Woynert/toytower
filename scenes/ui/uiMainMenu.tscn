@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://ofa5hq6n8tcb"]
+
+[node name="uiMainMenu" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Toy Tower"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="Button3" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Scores"
+
+[node name="Button2" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
