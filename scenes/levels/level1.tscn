@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbd3fjp0ja4qb"]
+[gd_scene load_steps=3 format=3 uid="uid://dbd3fjp0ja4qb"]
+
+[ext_resource type="PackedScene" uid="uid://7gv6q50fuutj" path="res://scenes/player/player.tscn" id="1_578s2"]
 
 [sub_resource type="Curve3D" id="Curve3D_td5o5"]
 _data = {
@@ -10,6 +12,7 @@ point_count = 3
 [node name="level1" type="Node3D"]
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
 size = Vector3(26, 1, 12)
@@ -34,3 +37,9 @@ size = Vector3(1, 6, 26)
 
 [node name="Path3D" type="Path3D" parent="enemyPath"]
 curve = SubResource("Curve3D_td5o5")
+
+[node name="Player" parent="." instance=ExtResource("1_578s2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.933013, 0.258819, -0.25, 0.258819, 1.11291e-07, 0.965926, 0.25, -0.965926, -0.0669872, 0, 11, 0)

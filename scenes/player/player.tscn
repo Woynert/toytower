@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://7gv6q50fuutj"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_jsnv8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rqwnu"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1dqo7"]
+size = Vector3(1, 2, 1)
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_jsnv8")
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+shape = SubResource("BoxShape3D_rqwnu")
+
+[node name="MeshInstance3d" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_1dqo7")
+
+[node name="head" type="Node3D" parent="."]
+
+[node name="camera" type="Camera3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.681, 0)
+
+[node name="gunRay" type="RayCast3D" parent="head/camera"]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 0, -0.00588068, 0.463024)
+target_position = Vector3(60, 0, 0)
+
+[node name="yaw" type="Node3D" parent="."]
