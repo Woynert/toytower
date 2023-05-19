@@ -1,0 +1,119 @@
+[gd_scene load_steps=12 format=3 uid="uid://brsdovr5w0fe5"]
+
+[ext_resource type="Script" path="res://scenes/map/sashaMainStage.gd" id="1_j8why"]
+[ext_resource type="PackedScene" uid="uid://mrp6ae8ctlod" path="res://assets/blender/sasha.blend" id="2_xw2o7"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_imkea"]
+animation = &"posing0"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tu605"]
+animation = &"posing1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4cx1u"]
+animation = &"posing2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qcrj7"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4y7hc"]
+xfade_time = 0.5
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_plx0l"]
+xfade_time = 0.5
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5sd81"]
+states/End/position = Vector2(773, 112)
+states/Start/position = Vector2(393, 57)
+states/posing0/node = SubResource("AnimationNodeAnimation_imkea")
+states/posing0/position = Vector2(629, 107)
+states/posing1/node = SubResource("AnimationNodeAnimation_tu605")
+states/posing1/position = Vector2(386, 112)
+states/posing2/node = SubResource("AnimationNodeAnimation_4cx1u")
+states/posing2/position = Vector2(386, 165)
+transitions = ["Start", "posing0", SubResource("AnimationNodeStateMachineTransition_qcrj7"), "posing1", "posing0", SubResource("AnimationNodeStateMachineTransition_4y7hc"), "posing2", "posing0", SubResource("AnimationNodeStateMachineTransition_plx0l")]
+graph_offset = Vector2(57, -22)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_g7vnd"]
+graph_offset = Vector2(-271.204, -89.7693)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_5sd81")
+nodes/StateMachine/position = Vector2(-40, -40)
+nodes/output/position = Vector2(200, -40)
+node_connections = [&"output", 0, &"StateMachine"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_itbrw"]
+
+[node name="sashaMainStage" type="Node3D"]
+script = ExtResource("1_j8why")
+
+[node name="sasha" parent="." instance=ExtResource("2_xw2o7")]
+
+[node name="Skeleton3D" parent="sasha/Armature" index="0"]
+bones/0/position = Vector3(1.05879e-22, -0.440015, -3.79194e-09)
+bones/0/rotation = Quaternion(-0.126476, 1.18252e-07, -1.50771e-08, 0.99197)
+bones/1/position = Vector3(0.622646, -0.116911, -0.195338)
+bones/1/rotation = Quaternion(0.0135561, -0.0200722, 0.990859, -0.132708)
+bones/2/rotation = Quaternion(-0.248808, -0.135711, 0.00786341, 0.958966)
+bones/3/position = Vector3(0.136496, 1.57719, -0.103146)
+bones/3/rotation = Quaternion(0.132454, 0.631007, 0.762825, 0.0488309)
+bones/4/rotation = Quaternion(0.174654, -1.25259e-05, -1.00045e-05, 0.98463)
+bones/5/rotation = Quaternion(-0.114517, -0.0666607, 0.971876, -0.194677)
+bones/6/rotation = Quaternion(0.223329, -0.171838, -0.0315205, 0.958959)
+bones/9/rotation = Quaternion(0.0386866, -0.0866079, -0.6417, 0.761067)
+bones/10/rotation = Quaternion(-0.00494115, 0.0350977, -0.584417, 0.810679)
+bones/11/rotation = Quaternion(0.354614, 0.518829, -0.489984, 0.604137)
+bones/12/rotation = Quaternion(0.0735933, 0.163563, -0.493034, 0.851322)
+bones/13/position = Vector3(1.81917e-12, 1.60333, 0.0124)
+bones/13/rotation = Quaternion(0.044074, 2.63143e-13, -3.13164e-16, 0.999028)
+bones/17/rotation = Quaternion(-0.158673, 0.0103287, 0.980025, 0.119449)
+bones/18/rotation = Quaternion(-0.0012775, 0.897401, 0.00195122, 0.44121)
+bones/19/rotation = Quaternion(-0.163776, -0.806278, -0.0939008, 0.560603)
+bones/20/rotation = Quaternion(0.00397123, -0.0164138, 0.0696177, 0.997431)
+bones/21/rotation = Quaternion(0.0385063, 0.0900174, 0.474742, 0.874662)
+bones/22/rotation = Quaternion(-0.0722469, 0.0410406, 0.606873, 0.790444)
+bones/23/position = Vector3(-0.215437, 0.393101, -0.0537422)
+bones/23/rotation = Quaternion(0.636722, 0.143193, 0.127191, 0.746929)
+bones/26/position = Vector3(-0.0465899, 0.264467, 0.215396)
+bones/26/rotation = Quaternion(0.666568, -0.195549, 0.404985, 0.594504)
+bones/27/rotation = Quaternion(-0.299769, 0.00220259, 0.223998, 0.927339)
+bones/28/position = Vector3(-0.572661, -0.165297, -0.20788)
+bones/28/rotation = Quaternion(-0.00369127, 0.0499865, 0.99315, 0.10555)
+bones/29/rotation = Quaternion(-0.225768, 0.298919, -0.0114328, 0.927117)
+bones/30/position = Vector3(0.0165655, 1.504, -0.0446539)
+
+[node name="Roundcube" parent="sasha/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 1.2888e-05, -2.91859e-05, -1.80539e-05, 0.982816, -0.184589, 2.63054e-05, 0.184589, 0.982816, 3.25171e-05, 3.02448, -0.0381977)
+bone_idx = 14
+
+[node name="Cube001" parent="sasha/Armature/Skeleton3D" index="1"]
+transform = Transform3D(0.847918, 0.392146, 0.35673, -0.352782, 0.919677, -0.172449, -0.395702, 0.0203748, 0.918153, 0.814709, 2.8594, -0.536502)
+bone_idx = 15
+
+[node name="Roundcube001" parent="sasha/Armature/Skeleton3D" index="2"]
+transform = Transform3D(1, 1.2888e-05, -2.91859e-05, -1.80539e-05, 0.982816, -0.184589, 2.63054e-05, 0.184589, 0.982816, 3.25171e-05, 3.02448, -0.0381977)
+bone_idx = 16
+
+[node name="Cylinder008" parent="sasha/Armature/Skeleton3D" index="3"]
+transform = Transform3D(-0.600196, -0.562642, 0.568507, 0.799731, -0.434598, 0.414191, 0.0140304, 0.703248, 0.710805, -1.18768, -1.20729, -0.459826)
+bone_idx = 24
+
+[node name="Cylinder009" parent="sasha/Armature/Skeleton3D" index="4"]
+transform = Transform3D(-0.600196, -0.562642, 0.568507, 0.799731, -0.434598, 0.414191, 0.0140304, 0.703248, 0.710805, -2.217, -2.00236, 0.826724)
+bone_idx = 25
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_g7vnd")
+anim_player = NodePath("../sasha/AnimationPlayer")
+active = true
+parameters/StateMachine/playback = SubResource("AnimationNodeStateMachinePlayback_itbrw")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="sasha"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmy2o32g62fip"]
+
+[ext_resource type="PackedScene" uid="uid://brsdovr5w0fe5" path="res://scenes/map/sashaMainStage.tscn" id="1_l63jw"]
+
+[node name="mainStage" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.82951, 12.9259)
+
+[node name="sashaMainStage" parent="." instance=ExtResource("1_l63jw")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.767583, 0.221394, 0.6015, -0.640942, 0.260468, 0.722045, 0.00318533, -0.939756, 0.341831, 0, 13.3667, 0)
