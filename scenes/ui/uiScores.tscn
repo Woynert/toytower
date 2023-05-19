@@ -1,8 +1,11 @@
-[gd_scene format=3 uid="uid://t0occimcfq4g"]
+[gd_scene load_steps=2 format=3 uid="uid://t0occimcfq4g"]
 
-[node name="uiMainMenu" type="VBoxContainer"]
+[ext_resource type="Script" path="res://scenes/ui/uiScores.gd" id="1_bcafo"]
+
+[node name="uiScores" type="VBoxContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_bcafo")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
@@ -79,6 +82,7 @@ layout_mode = 2
 text = "000
 "
 
-[node name="Button3" type="Button" parent="."]
+[node name="btnReturn" type="Button" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Return"
