@@ -14,7 +14,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 5.8
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.767583, 0.221394, 0.6015, -0.640942, 0.260468, 0.722045, 0.00318533, -0.939756, 0.341831, 0, 13.3667, 0)
+transform = Transform3D(0.767582, 0.221394, 0.6015, -0.224217, -0.786407, 0.575579, 0.600453, -0.576671, -0.553992, 0, 13.3667, 0)
 
 [node name="uiDriver" type="Control" parent="."]
 layout_mode = 3
