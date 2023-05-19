@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmy2o32g62fip"]
+[gd_scene load_steps=4 format=3 uid="uid://bmy2o32g62fip"]
 
 [ext_resource type="PackedScene" uid="uid://brsdovr5w0fe5" path="res://scenes/map/sashaMainStage.tscn" id="1_l63jw"]
 [ext_resource type="PackedScene" uid="uid://ofa5hq6n8tcb" path="res://scenes/ui/uiMainMenu.tscn" id="2_1kx0r"]
+[ext_resource type="PackedScene" uid="uid://t0occimcfq4g" path="res://scenes/ui/uiScores.tscn" id="3_dbccq"]
 
 [node name="mainStage" type="Node3D"]
 
@@ -14,7 +15,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.767583, 0.221394, 0.6015, -0.640942, 0.260468, 0.722045, 0.00318533, -0.939756, 0.341831, 0, 13.3667, 0)
 
-[node name="Control2" type="Control" parent="."]
+[node name="ui" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +25,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ui"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,19 +34,32 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="Control2/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="ui/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Control" type="Control" parent="Control2/HBoxContainer"]
+[node name="Control" type="Control" parent="ui/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="Control2/HBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="ui/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="uiMainMenu" parent="Control2/HBoxContainer/CenterContainer" instance=ExtResource("2_1kx0r")]
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/HBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ui/HBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Toy Tower"
+horizontal_alignment = 1
+
+[node name="uiMainMenu" parent="ui/HBoxContainer/CenterContainer/VBoxContainer" instance=ExtResource("2_1kx0r")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="uiMainMenu2" parent="ui/HBoxContainer/CenterContainer/VBoxContainer" instance=ExtResource("3_dbccq")]
+layout_mode = 2
