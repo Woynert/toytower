@@ -10,41 +10,43 @@ var enemiesSpawned = 1
 # health
 # speed
 # attack speed
+# damage
 
 const enemiesBaseStats = [
-	[100, 0.055, 1.6],
-	[200, 0.05, 1.5],
-	[500, 0.02, 3]
+	[100, 0.055, 1.6, 5],
+	[200, 0.05, 1.5, 8],
+	[500, 0.02, 3, 15]
 ]
 
 # base enemy index
 # health factor
 # speed factor
+# damage factor
 # scale factor
 
 const enemiesPerRound = [
 	# easy: A, A lite, B, B lite
 	[
-		[0, 1, 1, 1],
-		[0, 0.25, 1.2, 0.7],
-		[1, 1, 1, 1],
-		[1, 0.25, 1.6, 0.7],
+		[0, 1, 1, 1, 1],
+		[0, 0.25, 1.2, 0.5, 0.7],
+		[1, 1, 1, 1, 1],
+		[1, 0.25, 1.6, 0.5, 0.7],
 	],
 	
 	# medium: A big, B, C lite
 	[
-		[0, 1.5, 0.8, 1.3],
-		[1, 1, 1, 1],
-		[2, 0.25, 1, 0.7]
+		[0, 1.5, 0.8, 1.5, 1.3],
+		[1, 1, 1, 1, 1],
+		[2, 0.25, 1, 0.5, 0.7]
 	],
 	
 	# hard: B big, C, C big, A big, B lite
 	[
-		[1, 1.5, 1, 1.1],
-		[2, 1, 1, 0.9],
-		[2, 1.2, 0.8, 1.2],
-		[0, 1.5, 0.8, 1.3],
-		[1, 0.25, 1.6, 0.7],
+		[1, 1.5, 1, 1.5, 1.1],
+		[2, 1, 1, 1, 0.9],
+		[2, 1.2, 0.8, 1.5, 1.2],
+		[0, 1.5, 0.8, 1.5, 1.3],
+		[1, 0.25, 1.6, 0.5, 0.7],
 	]
 ]
 
@@ -106,7 +108,8 @@ func _on_spawn_timeout():
 			index,
 			enemyStats[1] * enemiesBaseStats[index][0],
 			enemyStats[2] * enemiesBaseStats[index][1],
-			enemyStats[3],
+			max(1, ceil(enemyStats[3] * enemiesBaseStats[index][3])),
+			enemyStats[4],
 			enemiesBaseStats[index][2],
 		)
 

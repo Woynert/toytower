@@ -28,7 +28,7 @@ func showCurrentMenu():
 			%uiScores.visible = true
 
 func play():
-	print("play")
+	GlobalState.reset_game()
 	get_tree().change_scene_to_file("res://scenes/levels/level1.tscn")
 
 func goToScores():
@@ -40,6 +40,5 @@ func goToMain():
 	showCurrentMenu()
 
 func quit():
-	print("quit")
 	get_tree().quit()
 	
