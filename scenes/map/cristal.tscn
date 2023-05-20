@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://danmvmwlt236"]
+
+[ext_resource type="PackedScene" uid="uid://df1twmoiopxdg" path="res://assets/blender/cristal.blend" id="1_pwrxi"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xtyqv"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_gxmd5"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yqk0x"]
+graph_offset = Vector2(-278.054, 82.9865)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_xtyqv")
+nodes/Animation/position = Vector2(-80, 260)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_gxmd5")
+nodes/TimeScale/position = Vector2(120, 240)
+nodes/output/position = Vector2(320, 260)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[node name="cristal" type="Node3D"]
+
+[node name="visual" type="Node3D" parent="."]
+
+[node name="cristal" parent="visual" instance=ExtResource("1_pwrxi")]
+
+[node name="Skeleton3D" parent="visual/cristal/Armature" index="0"]
+bones/2/position = Vector3(0, 0.661891, 0)
+bones/4/position = Vector3(0, 0.902333, 0)
+bones/4/rotation = Quaternion(4.12615e-08, 0.962727, 3.09722e-08, 0.270475)
+
+[node name="Cylinder" parent="visual/cristal/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0176613, 0)
+bone_idx = 1
+
+[node name="Cylinder001" parent="visual/cristal/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.9407e-09, 0.76622, -1.11759e-08)
+bone_idx = 3
+
+[node name="Circle" parent="visual/cristal/Armature/Skeleton3D" index="2"]
+transform = Transform3D(-0.853687, 9.37339e-08, 0.520787, 9.62014e-08, 1, -2.22895e-08, -0.520787, 3.10722e-08, -0.853687, -4.40504e-09, 0.832069, -5.75855e-09)
+bone_idx = 5
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_yqk0x")
+anim_player = NodePath("../visual/cristal/AnimationPlayer")
+active = true
+parameters/TimeScale/scale = 0.25
+
+[editable path="visual/cristal"]
