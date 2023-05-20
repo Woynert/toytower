@@ -55,5 +55,4 @@ gm_secondary_action={
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

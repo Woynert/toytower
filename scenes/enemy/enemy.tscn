@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://bfqty2lqku5lg"]
+[gd_scene load_steps=20 format=3 uid="uid://bfqty2lqku5lg"]
 
+[ext_resource type="Script" path="res://scenes/enemy/enemy.gd" id="1_dy6i0"]
 [ext_resource type="PackedScene" uid="uid://l0ocmanq12py" path="res://assets/blender/bot1.blend" id="1_fabgi"]
 [ext_resource type="Script" path="res://scenes/enemy/enemyVisual.gd" id="1_ossjd"]
 [ext_resource type="PackedScene" uid="uid://c201w1smj62xl" path="res://assets/blender/bot2.blend" id="2_hh7p6"]
@@ -51,11 +52,13 @@ graph_offset = Vector2(79, -35)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_c721l"]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_61ft7"]
-
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_vauui"]
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_61ft7"]
+
 [node name="enemy" type="PathFollow3D"]
+loop = false
+script = ExtResource("1_dy6i0")
 
 [node name="enemyVisual" type="Node3D" parent="."]
 script = ExtResource("1_ossjd")
@@ -65,46 +68,50 @@ script = ExtResource("1_ossjd")
 [node name="bot1" parent="enemyVisual/1" instance=ExtResource("1_fabgi")]
 
 [node name="Skeleton3D" parent="enemyVisual/1/bot1/Empty/Armature" index="0"]
-bones/1/rotation = Quaternion(0.661638, 0.249471, -0.661637, -0.249471)
-bones/2/rotation = Quaternion(4.13635e-08, -3.23296e-07, 0.600964, 0.799276)
-bones/3/rotation = Quaternion(1.28495e-07, 1.19711e-08, 0.241638, 0.970366)
-bones/7/rotation = Quaternion(0.661637, -0.249471, 0.661637, -0.249471)
-bones/8/rotation = Quaternion(1.04137e-09, 2.34914e-07, -0.600964, 0.799276)
+bones/0/position = Vector3(8.42828e-16, -0.0854581, 0.0567328)
+bones/1/rotation = Quaternion(0.671402, 0.221853, -0.671404, -0.221849)
+bones/2/rotation = Quaternion(-1.67841e-08, -4.22336e-07, -0.00160316, 0.999999)
+bones/3/position = Vector3(-0.031923, 1.63119, 9.7938e-07)
+bones/3/rotation = Quaternion(2.48106e-06, -2.62974e-06, 0.737454, 0.675397)
+bones/7/rotation = Quaternion(0.67247, 0.218595, 0.67247, 0.218596)
+bones/8/rotation = Quaternion(-1.44279e-07, 3.11609e-07, -0.0233569, 0.999727)
+bones/9/position = Vector3(-0.13903, 1.553, 3.17932e-07)
+bones/9/rotation = Quaternion(9.6995e-07, 2.64494e-07, -0.118514, 0.992952)
 
 [node name="Cube003" parent="enemyVisual/1/bot1/Empty/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, -2.45533e-07, 1.1185e-07, 3.24799e-07, 1, 1.49012e-07, -2.0848e-07, -1.19209e-07, 1, 1.77717, -3.01989, -0.0964449)
+transform = Transform3D(1, -8.443e-07, 5.68555e-06, 1.09208e-06, 0.999229, -0.0392621, -5.59068e-06, 0.0392624, 0.999229, 1.77719, -3.05638, -1.65637)
 bone_idx = 4
 
 [node name="Cube002" parent="enemyVisual/1/bot1/Empty/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-6.96985e-08, 1.00954e-08, 1, -0.485627, 0.874166, -3.86429e-09, -0.874166, -0.485627, -1.53762e-07, 1.75584, -1.23463, -1.06484)
+transform = Transform3D(-4.98173e-06, -3.90075e-06, 1, 0.646259, 0.763118, 6.18104e-06, -0.763118, 0.646259, -1.2261e-06, 1.75585, -1.34236, -1.04747)
 bone_idx = 5
 
 [node name="Cylinder" parent="enemyVisual/1/bot1/Empty/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-1.38228e-07, 1, -2.04353e-07, 0.616642, -1.67793e-08, -0.787243, -0.787243, -3.1806e-07, -0.616642, 1.75811, 0.197687, -0.00226921)
+transform = Transform3D(-4.32218e-06, 1, 4.13785e-06, 0.549365, 5.83797e-06, -0.835583, -0.835583, -1.2709e-06, -0.549365, 1.75811, 0.193807, 0.0174033)
 bone_idx = 6
 
 [node name="Cube001" parent="enemyVisual/1/bot1/Empty/Armature/Skeleton3D" index="3"]
-transform = Transform3D(1, 3.95799e-08, 7.52149e-08, -1.2042e-07, 1, 1.49012e-07, -1.08741e-07, -2.98023e-08, 1, -1.77717, -3.0199, -0.0964457)
+transform = Transform3D(1, -1.28957e-07, 8.21959e-07, 1.34112e-07, 0.989722, -0.143007, -8.70621e-07, 0.143007, 0.989722, -1.77717, -3.06936, 2.59698)
 bone_idx = 10
 
 [node name="Cube" parent="enemyVisual/1/bot1/Empty/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-2.55318e-08, -3.76068e-08, 1, -0.485627, 0.874166, 2.70384e-08, -0.874166, -0.485627, -6.05816e-08, -1.75584, -1.23463, -1.06484)
+transform = Transform3D(-6.32929e-07, 1.24044e-06, 1, -0.576224, 0.817292, -1.405e-06, -0.817292, -0.576224, 1.47815e-07, -1.75584, -1.33176, 1.57094)
 bone_idx = 11
 
 [node name="Cylinder003" parent="enemyVisual/1/bot1/Empty/Armature/Skeleton3D" index="5"]
-transform = Transform3D(-7.1477e-08, 1, 1.64603e-07, 0.616643, 1.65216e-07, -0.787243, -0.787243, 1.24925e-08, -0.616643, -1.75811, 0.197686, -0.00226903)
+transform = Transform3D(-8.99386e-07, 1, -5.05261e-07, -0.632863, -1.00261e-06, -0.774264, -0.774264, -4.14422e-07, 0.632863, -1.75811, 0.140266, 0.420287)
 bone_idx = 12
 
 [node name="Cylinder001" parent="enemyVisual/1/bot1/Empty/Armature/Skeleton3D" index="6"]
-transform = Transform3D(1, 1.4211e-14, -2.84217e-14, -1.4211e-14, 1, -3.37508e-13, 1.42109e-14, 3.37508e-13, 1, -5.85738e-14, 3.12106, 1.29405)
+transform = Transform3D(1, 1.4211e-14, -2.84217e-14, -1.4211e-14, 1, -3.37508e-13, 1.42109e-14, 3.37508e-13, 1, -5.77083e-14, 3.13772, 1.29405)
 bone_idx = 15
 
 [node name="Cylinder002" parent="enemyVisual/1/bot1/Empty/Armature/Skeleton3D" index="7"]
-transform = Transform3D(1, 1.4211e-14, -2.84217e-14, -1.4211e-14, 1, -3.37508e-13, 1.42109e-14, 3.37508e-13, 1, -1.11309e-13, 2.55683, 2.86739)
+transform = Transform3D(1, 1.4211e-14, -2.84217e-14, -1.4211e-14, 1, -3.37508e-13, 1.42109e-14, 3.37508e-13, 1, -1.10444e-13, 2.57349, 2.86739)
 bone_idx = 16
 
 [node name="Roundcube" parent="enemyVisual/1/bot1/Empty/Armature/Skeleton3D" index="8"]
-transform = Transform3D(1, 1.42109e-14, -4.26326e-14, -1.42109e-14, 1, -3.55271e-15, 1.42109e-14, 3.55271e-15, 1, -6.23992e-15, 0.823479, -5.58794e-08)
+transform = Transform3D(1, 1.42109e-14, -4.26326e-14, -1.42109e-14, 1, -3.55271e-15, 1.42109e-14, 3.55271e-15, 1, -5.37442e-15, 0.840139, -5.58794e-08)
 bone_idx = 17
 
 [node name="AnimationTree" type="AnimationTree" parent="enemyVisual/1"]
@@ -115,162 +122,168 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_c721l")
 
 [node name="2" type="Node3D" parent="enemyVisual"]
 
-[node name="bot2" parent="enemyVisual/2" instance=ExtResource("2_hh7p6")]
+[node name="bot3" parent="enemyVisual/2" instance=ExtResource("3_0siqn")]
 
-[node name="Skeleton3D" parent="enemyVisual/2/bot2/Empty/Armature" index="0"]
-bones/1/rotation = Quaternion(0.680948, 0.190551, -0.680948, -0.190551)
-bones/2/rotation = Quaternion(-1.20997e-07, -7.0769e-08, 0.538407, 0.842685)
-bones/3/rotation = Quaternion(-4.2905e-08, -1.84469e-08, 0.287303, 0.95784)
-bones/8/rotation = Quaternion(0.705847, -0.0421924, -0.705847, 0.0421923)
-bones/9/rotation = Quaternion(-8.16567e-08, 1.00143e-07, 0.437048, 0.899438)
-bones/12/rotation = Quaternion(0.368468, -6.41586e-15, 2.98743e-15, 0.92964)
-bones/15/rotation = Quaternion(0.705847, 0.0421924, 0.705847, 0.0421923)
-bones/16/rotation = Quaternion(-8.16567e-08, -1.00143e-07, -0.437048, 0.899438)
-bones/20/rotation = Quaternion(0.680948, -0.190551, 0.680948, -0.190551)
-bones/21/rotation = Quaternion(-4.02861e-08, 2.05865e-07, -0.538407, 0.842685)
-bones/22/rotation = Quaternion(6.59715e-08, 3.09434e-08, -0.287303, 0.95784)
-
-[node name="Cube005" parent="enemyVisual/2/bot2/Empty/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, 3.90898e-08, -2.3138e-07, -3.34773e-08, 1, 3.27826e-07, 5.28591e-08, 0, 1, 1.31423, 0.195631, -0.0964465)
-bone_idx = 4
-
-[node name="Cube004" parent="enemyVisual/2/bot2/Empty/Armature/Skeleton3D" index="1"]
-transform = Transform3D(2.23392e-08, 1.59516e-07, 1, -0.485627, 0.874166, -9.32231e-08, -0.874166, -0.485627, -1.39617e-08, 1.2929, 1.9809, -1.06484)
-bone_idx = 5
-
-[node name="Cylinder005" parent="enemyVisual/2/bot2/Empty/Armature/Skeleton3D" index="2"]
-transform = Transform3D(1.8222e-07, 1, 1.70932e-07, 0.616643, 5.92028e-08, -0.787243, -0.787243, 1.39065e-07, -0.616643, 1.29517, 3.41321, -0.00226925)
-bone_idx = 6
-
-[node name="Cylinder010" parent="enemyVisual/2/bot2/Empty/Armature/Skeleton3D" index="3"]
-transform = Transform3D(1.98999e-07, 1, -1.45262e-07, -0.51181, -8.27632e-08, 0.859098, 0.859098, -5.36602e-08, 0.51181, 2.96468, 4.63937, 0.216619)
-bone_idx = 10
-
-[node name="Cylinder009" parent="enemyVisual/2/bot2/Empty/Armature/Skeleton3D" index="4"]
-transform = Transform3D(1.67641e-07, 1, 3.56933e-07, -1, 1.06651e-07, -2.38884e-07, -2.98489e-07, -4.33339e-07, 1, 2.96456, 7.24669, 1.2219e-06)
-bone_idx = 11
-
-[node name="Roundcube003" parent="enemyVisual/2/bot2/Empty/Armature/Skeleton3D" index="5"]
-transform = Transform3D(1, -4.55733e-15, 1.46956e-14, 6.8875e-15, 1, -8.9407e-08, -2.81395e-14, 1.19209e-07, 1, 3.55721e-14, 8.44973, 2.91684)
-bone_idx = 13
-
-[node name="Cylinder008" parent="enemyVisual/2/bot2/Empty/Armature/Skeleton3D" index="6"]
-transform = Transform3D(1, -4.55733e-15, 1.46956e-14, 6.8875e-15, 1, -8.9407e-08, -2.81395e-14, 1.19209e-07, 1, 5.30687e-14, 8.06438, 3.98793)
-bone_idx = 14
-
-[node name="Cylinder007" parent="enemyVisual/2/bot2/Empty/Armature/Skeleton3D" index="7"]
-transform = Transform3D(1.28827e-07, 1, 3.24076e-07, -0.51181, -1.76048e-07, 0.859098, 0.859098, -1.4755e-07, 0.511811, -2.96468, 4.63937, 0.216619)
-bone_idx = 17
-
-[node name="Cylinder006" parent="enemyVisual/2/bot2/Empty/Armature/Skeleton3D" index="8"]
-transform = Transform3D(1.00581e-07, 1, -2.37723e-07, -1, 1.30651e-07, -3.27826e-07, -4.16767e-07, 2.23454e-07, 1, -2.96456, 7.24669, 1.2219e-06)
-bone_idx = 18
-
-[node name="Roundcube001" parent="enemyVisual/2/bot2/Empty/Armature/Skeleton3D" index="9"]
-transform = Transform3D(1, -7.44485e-15, 8.71938e-15, 9.77502e-15, 1, -1.49012e-08, -2.21633e-14, 1.49012e-08, 1, 1.67401e-14, 6.04887, 1.04795)
-bone_idx = 19
-
-[node name="Cube007" parent="enemyVisual/2/bot2/Empty/Armature/Skeleton3D" index="10"]
-transform = Transform3D(1, -9.75169e-08, -9.83872e-08, 1.59858e-08, 1, 1.78814e-07, 1.33725e-07, -1.49012e-07, 1, -1.31423, 0.195632, -0.0964462)
-bone_idx = 23
-
-[node name="Cube006" parent="enemyVisual/2/bot2/Empty/Armature/Skeleton3D" index="11"]
-transform = Transform3D(-1.57514e-08, -6.76233e-08, 1, -0.485627, 0.874166, -1.52727e-08, -0.874166, -0.485627, -2.11715e-08, -1.2929, 1.9809, -1.06484)
-bone_idx = 24
-
-[node name="Cylinder004" parent="enemyVisual/2/bot2/Empty/Armature/Skeleton3D" index="12"]
-transform = Transform3D(-1.01554e-07, 1, 1.17513e-07, 0.616643, 1.8012e-07, -0.787243, -0.787243, 9.07913e-08, -0.616643, -1.29517, 3.41321, -0.00226934)
-bone_idx = 25
-
-[node name="Roundcube" parent="enemyVisual/2/bot2/Empty/Armature/Skeleton3D" index="13"]
-transform = Transform3D(1, -1.77636e-14, 4.26326e-14, 1.77636e-14, 1, 0, -5.68434e-14, 0, 1, 3.55271e-15, 3.90081, -1.49012e-08)
-bone_idx = 26
-
-[node name="AnimationTree" type="AnimationTree" parent="enemyVisual/2"]
-tree_root = SubResource("AnimationNodeStateMachine_g81mx")
-anim_player = NodePath("../bot2/AnimationPlayer")
-active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_61ft7")
-
-[node name="3" type="Node3D" parent="enemyVisual"]
-
-[node name="bot3" parent="enemyVisual/3" instance=ExtResource("3_0siqn")]
-
-[node name="Skeleton3D" parent="enemyVisual/3/bot3/root/Armature" index="0"]
-bones/1/rotation = Quaternion(0.672704, 0.217875, -0.672704, -0.217875)
-bones/2/rotation = Quaternion(-3.87042e-08, -3.68273e-09, 0.544303, 0.838889)
-bones/3/rotation = Quaternion(-4.6081e-08, 1.24388e-07, 0.236626, 0.971601)
-bones/7/rotation = Quaternion(0.672704, -0.217875, 0.672704, -0.217875)
-bones/8/rotation = Quaternion(-3.87042e-08, 3.68273e-09, -0.544303, 0.838889)
-bones/9/rotation = Quaternion(-4.6081e-08, -1.24388e-07, -0.236626, 0.971601)
+[node name="Skeleton3D" parent="enemyVisual/2/bot3/root/Armature" index="0"]
+bones/0/position = Vector3(0, 3.00741, 0)
+bones/1/rotation = Quaternion(0.678981, 0.197446, -0.678981, -0.197446)
+bones/2/rotation = Quaternion(-2.42008e-08, -2.48257e-08, 0.0110518, 0.999939)
+bones/3/position = Vector3(0.00882105, 1.47928, 5.19606e-10)
+bones/3/rotation = Quaternion(3.93335e-08, -2.73055e-08, 0.702917, 0.711272)
+bones/7/rotation = Quaternion(0.683033, 0.182935, 0.683033, 0.182935)
+bones/8/rotation = Quaternion(-6.11334e-08, 3.68787e-08, -0.125042, 0.992151)
+bones/9/position = Vector3(-0.174772, 1.4711, -3.10303e-08)
+bones/9/rotation = Quaternion(-6.27853e-09, -1.2663e-07, -0.0643094, 0.99793)
 bones/14/position = Vector3(1.54737, 0.0228315, 0.318166)
 bones/14/rotation = Quaternion(0.702108, -0.567314, -0.337303, 0.267257)
 bones/15/rotation = Quaternion(0.162348, -0.921519, -0.352538, 0.0127648)
 bones/21/rotation = Quaternion(0.673072, -0.476059, 0.463427, -0.324926)
 bones/22/rotation = Quaternion(-0.679934, 0.0312583, -0.662602, 0.312524)
 
-[node name="Cube003" parent="enemyVisual/3/bot3/root/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, 4.0823e-08, -2.41648e-08, -1.06608e-07, 1, 2.98024e-08, 8.95174e-08, -1.19209e-07, 1, 1.77717, 0.195631, -0.0964462)
+[node name="Cube003" parent="enemyVisual/2/bot3/root/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 4.42053e-07, 3.75114e-08, -4.76412e-07, 0.99992, 0.0126356, 4.89559e-08, -0.0126355, 0.99992, 1.77717, 0.161013, -1.42087)
 bone_idx = 4
 
-[node name="Cube002" parent="enemyVisual/3/bot3/root/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-1.86175e-08, 4.75739e-08, 1, -0.485627, 0.874166, -8.09481e-08, -0.874166, -0.485627, 9.52226e-08, 1.75584, 1.9809, -1.06484)
+[node name="Cube002" parent="enemyVisual/2/bot3/root/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.71142e-08, 3.30575e-08, 1, 0.532439, 0.846468, -6.72064e-08, -0.846468, 0.532439, 1.51144e-07, 1.75584, 1.91057, -1.06687)
 bone_idx = 5
 
-[node name="Cylinder" parent="enemyVisual/3/bot3/root/Armature/Skeleton3D" index="2"]
-transform = Transform3D(4.02057e-08, 1, -2.75143e-08, 0.616643, -7.5211e-08, -0.787243, -0.787243, 9.95927e-08, -0.616643, 1.75811, 3.41321, -0.00226912)
+[node name="Cylinder" parent="enemyVisual/2/bot3/root/Armature/Skeleton3D" index="2"]
+transform = Transform3D(1.59329e-07, 1, -2.29814e-08, 0.567955, -1.06224e-07, -0.823059, -0.823059, 2.1798e-07, -0.567955, 1.75811, 3.42399, 0.00135799)
 bone_idx = 6
 
-[node name="Cube001" parent="enemyVisual/3/bot3/root/Armature/Skeleton3D" index="3"]
-transform = Transform3D(1, -4.0823e-08, 2.41648e-08, 1.06608e-07, 1, 2.98024e-08, -8.95174e-08, -1.19209e-07, 1, -1.77717, 0.195631, -0.0964462)
+[node name="Cube001" parent="enemyVisual/2/bot3/root/Armature/Skeleton3D" index="3"]
+transform = Transform3D(1, -4.69511e-08, -1.16825e-07, 6.80948e-08, 0.99504, -0.0994773, 1.47371e-07, 0.0994774, 0.995039, -1.77717, 0.169521, 2.01375)
 bone_idx = 10
 
-[node name="Cube" parent="enemyVisual/3/bot3/root/Armature/Skeleton3D" index="4"]
-transform = Transform3D(3.94661e-08, 3.57187e-08, 1, -0.485627, 0.874166, 1.82613e-08, -0.874166, -0.485627, -3.65483e-08, -1.75584, 1.9809, -1.06484)
+[node name="Cube" parent="enemyVisual/2/bot3/root/Armature/Skeleton3D" index="4"]
+transform = Transform3D(1.32623e-07, 1.62258e-07, 1, -0.686391, 0.727233, -2.69684e-08, -0.727233, -0.686391, 2.07821e-07, -1.75584, 1.9041, 0.862997)
 bone_idx = 11
 
-[node name="Cylinder003" parent="enemyVisual/3/bot3/root/Armature/Skeleton3D" index="5"]
-transform = Transform3D(-4.81541e-09, 1, 8.71189e-08, 0.616643, 5.4463e-08, -0.787243, -0.787243, -7.09223e-08, -0.616643, -1.75811, 3.41321, -0.00226876)
+[node name="Cylinder003" parent="enemyVisual/2/bot3/root/Armature/Skeleton3D" index="5"]
+transform = Transform3D(5.58793e-08, 1, 5.96046e-08, -0.466508, 2.97906e-08, -0.884517, -0.884517, 5.16259e-08, 0.466507, -1.75811, 3.53639, 0.00263279)
 bone_idx = 12
 
-[node name="Cylinder006" parent="enemyVisual/3/bot3/root/Armature/Skeleton3D" index="6"]
-transform = Transform3D(-0.979439, -0.167849, -0.111918, 0.112074, 0.00857634, -0.993662, 0.167746, -0.985775, 0.0104115, 0.100483, 4.70061, 2.08144)
+[node name="Cylinder006" parent="enemyVisual/2/bot3/root/Armature/Skeleton3D" index="6"]
+transform = Transform3D(-0.979439, -0.167849, -0.111918, 0.112074, 0.00857634, -0.993662, 0.167746, -0.985775, 0.0104115, 0.100483, 4.70593, 2.08144)
 bone_idx = 16
 
-[node name="Cylinder005" parent="enemyVisual/3/bot3/root/Armature/Skeleton3D" index="7"]
-transform = Transform3D(-0.616338, 0.776883, -0.128763, -0.213457, -0.00742637, 0.976924, 0.758, 0.629601, 0.170408, 1.50436, 5.20522, 0.372319)
+[node name="Cylinder005" parent="enemyVisual/2/bot3/root/Armature/Skeleton3D" index="7"]
+transform = Transform3D(-0.616338, 0.776883, -0.128763, -0.213457, -0.00742637, 0.976924, 0.758, 0.629601, 0.170408, 1.50436, 5.21054, 0.372319)
 bone_idx = 17
 
-[node name="Cylinder001" parent="enemyVisual/3/bot3/root/Armature/Skeleton3D" index="8"]
-transform = Transform3D(1.4862, -4.96308e-24, 4.96308e-24, 4.96308e-24, 1.4862, 2.43679e-33, -4.96308e-24, -2.43679e-33, 1.4862, 1.94388e-15, 8.0386, 0.830023)
+[node name="Cylinder001" parent="enemyVisual/2/bot3/root/Armature/Skeleton3D" index="8"]
+transform = Transform3D(1.4862, -4.96308e-24, 4.96308e-24, 4.96308e-24, 1.4862, 2.43679e-33, -4.96308e-24, -2.43679e-33, 1.4862, 1.94388e-15, 8.04391, 0.830023)
 bone_idx = 19
 
-[node name="Cube004" parent="enemyVisual/3/bot3/root/Armature/Skeleton3D" index="9"]
-transform = Transform3D(-0.225181, -0.56372, -0.794677, -0.153686, 0.825966, -0.542366, 0.962119, 1.88251e-24, -0.272628, 0.811841, 7.26503, 1.11335)
+[node name="Cube004" parent="enemyVisual/2/bot3/root/Armature/Skeleton3D" index="9"]
+transform = Transform3D(-0.225181, -0.56372, -0.794677, -0.153686, 0.825966, -0.542366, 0.962119, 1.88251e-24, -0.272628, 0.811841, 7.27035, 1.11335)
 bone_idx = 20
 
-[node name="Cylinder004" parent="enemyVisual/3/bot3/root/Armature/Skeleton3D" index="10"]
-transform = Transform3D(-0.0918467, 0.0461279, 0.994704, -0.0778963, -0.996198, 0.0390046, 0.992722, -0.0739014, 0.0950906, -2.19946, 4.73521, -2.09284)
+[node name="Cylinder004" parent="enemyVisual/2/bot3/root/Armature/Skeleton3D" index="10"]
+transform = Transform3D(-0.0918467, 0.0461279, 0.994704, -0.0778963, -0.996198, 0.0390046, 0.992722, -0.0739014, 0.0950906, -2.19946, 4.74053, -2.09284)
 bone_idx = 23
 
-[node name="Cylinder008" parent="enemyVisual/3/bot3/root/Armature/Skeleton3D" index="11"]
-transform = Transform3D(0.373635, -4.17233e-07, -1.06171e-07, 1.86265e-09, 1.02166e-06, -0.373635, -3.72529e-08, 2.91316, 4.86616e-08, -2.52197, 5.06178, 2.52892)
+[node name="Cylinder008" parent="enemyVisual/2/bot3/root/Armature/Skeleton3D" index="11"]
+transform = Transform3D(0.373635, -4.17233e-07, -1.06171e-07, 1.86265e-09, 1.02166e-06, -0.373635, -3.72529e-08, 2.91316, 4.86616e-08, -2.52197, 5.06709, 2.52892)
 bone_idx = 24
 
-[node name="Cylinder002" parent="enemyVisual/3/bot3/root/Armature/Skeleton3D" index="12"]
-transform = Transform3D(-0.339686, 0.933207, 0.117208, -0.335581, -0.00383819, -0.942003, -0.878635, -0.359318, 0.31447, -1.4626, 5.50317, -0.126766)
+[node name="Cylinder002" parent="enemyVisual/2/bot3/root/Armature/Skeleton3D" index="12"]
+transform = Transform3D(-0.339686, 0.933207, 0.117208, -0.335581, -0.00383819, -0.942003, -0.878635, -0.359318, 0.31447, -1.4626, 5.50848, -0.126766)
 bone_idx = 25
 
-[node name="Roundcube" parent="enemyVisual/3/bot3/root/Armature/Skeleton3D" index="13"]
-transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 4.039, -3.22489e-15)
+[node name="Roundcube" parent="enemyVisual/2/bot3/root/Armature/Skeleton3D" index="13"]
+transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 4.04432, -3.22489e-15)
 bone_idx = 26
 
-[node name="AnimationTree" type="AnimationTree" parent="enemyVisual/3"]
+[node name="AnimationTree" type="AnimationTree" parent="enemyVisual/2"]
 tree_root = SubResource("AnimationNodeStateMachine_g81mx")
 anim_player = NodePath("../bot3/AnimationPlayer")
 active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_vauui")
 
+[node name="3" type="Node3D" parent="enemyVisual"]
+
+[node name="bot2" parent="enemyVisual/3" instance=ExtResource("2_hh7p6")]
+
+[node name="Skeleton3D" parent="enemyVisual/3/bot2/Empty/Armature" index="0"]
+bones/0/position = Vector3(1.78182e-08, 3.15103, -5.52073e-09)
+bones/1/rotation = Quaternion(0.68395, 0.179479, -0.68395, -0.179479)
+bones/2/rotation = Quaternion(-8.2497e-09, -8.85147e-08, -0.000634104, 1)
+bones/3/position = Vector3(-0.237495, 1.62303, -6.7786e-08)
+bones/3/rotation = Quaternion(-2.46846e-07, 2.18353e-07, 0.758312, 0.651892)
+bones/8/rotation = Quaternion(0.705847, -0.0421924, -0.705847, 0.0421923)
+bones/9/rotation = Quaternion(-8.16567e-08, 1.00143e-07, 0.437048, 0.899438)
+bones/12/rotation = Quaternion(0.368468, -6.41586e-15, 2.98743e-15, 0.92964)
+bones/15/rotation = Quaternion(0.705847, 0.0421924, 0.705847, 0.0421923)
+bones/16/rotation = Quaternion(-8.16567e-08, -1.00143e-07, -0.437048, 0.899438)
+bones/20/rotation = Quaternion(0.679793, 0.194634, 0.679792, 0.194636)
+bones/21/rotation = Quaternion(-9.99947e-08, 2.84891e-07, -0.161518, 0.98687)
+bones/22/position = Vector3(0.0377465, 1.60894, 6.57825e-07)
+bones/22/rotation = Quaternion(1.57543e-06, 7.29826e-07, -0.0832889, 0.996526)
+
+[node name="Cube005" parent="enemyVisual/3/bot2/Empty/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, -1.50574e-07, -2.43194e-07, 9.12669e-08, 0.999465, 0.0327001, 2.85894e-07, -0.0326998, 0.999465, 1.31423, 0.112237, -1.55825)
+bone_idx = 4
+
+[node name="Cube004" parent="enemyVisual/3/bot2/Empty/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-4.02255e-08, 4.58277e-07, 1, 0.56368, 0.825993, -3.91086e-07, -0.825993, 0.56368, -1.77238e-07, 1.2929, 1.95541, -1.07698)
+bone_idx = 5
+
+[node name="Cylinder005" parent="enemyVisual/3/bot2/Empty/Armature/Skeleton3D" index="2"]
+transform = Transform3D(-3.53833e-09, 1, -2.38259e-07, 0.59078, -2.23703e-07, -0.806833, -0.806833, -2.81925e-08, -0.59078, 1.29517, 3.42437, 0.00109385)
+bone_idx = 6
+
+[node name="Cylinder010" parent="enemyVisual/3/bot2/Empty/Armature/Skeleton3D" index="3"]
+transform = Transform3D(1.98999e-07, 1, -1.45262e-07, -0.51181, -8.27632e-08, 0.859098, 0.859098, -5.36602e-08, 0.51181, 2.96468, 4.6533, 0.216619)
+bone_idx = 10
+
+[node name="Cylinder009" parent="enemyVisual/3/bot2/Empty/Armature/Skeleton3D" index="4"]
+transform = Transform3D(1.67641e-07, 1, 3.56933e-07, -1, 1.06651e-07, -2.38884e-07, -2.98489e-07, -4.33339e-07, 1, 2.96456, 7.26063, 1.2219e-06)
+bone_idx = 11
+
+[node name="Roundcube003" parent="enemyVisual/3/bot2/Empty/Armature/Skeleton3D" index="5"]
+transform = Transform3D(1, -4.55733e-15, 1.46956e-14, 6.8875e-15, 1, -8.9407e-08, -2.81395e-14, 1.19209e-07, 1, 1.78182e-08, 8.46367, 2.91684)
+bone_idx = 13
+
+[node name="Cylinder008" parent="enemyVisual/3/bot2/Empty/Armature/Skeleton3D" index="6"]
+transform = Transform3D(1, -4.55733e-15, 1.46956e-14, 6.8875e-15, 1, -8.9407e-08, -2.81395e-14, 1.19209e-07, 1, 1.78182e-08, 8.07831, 3.98793)
+bone_idx = 14
+
+[node name="Cylinder007" parent="enemyVisual/3/bot2/Empty/Armature/Skeleton3D" index="7"]
+transform = Transform3D(1.28827e-07, 1, 3.24076e-07, -0.51181, -1.76048e-07, 0.859098, 0.859098, -1.4755e-07, 0.511811, -2.96468, 4.6533, 0.216619)
+bone_idx = 17
+
+[node name="Cylinder006" parent="enemyVisual/3/bot2/Empty/Armature/Skeleton3D" index="8"]
+transform = Transform3D(1.00581e-07, 1, -2.37723e-07, -1, 1.30651e-07, -3.27826e-07, -4.16767e-07, 2.23454e-07, 1, -2.96456, 7.26063, 1.2219e-06)
+bone_idx = 18
+
+[node name="Roundcube001" parent="enemyVisual/3/bot2/Empty/Armature/Skeleton3D" index="9"]
+transform = Transform3D(1, -7.44485e-15, 8.71938e-15, 9.77502e-15, 1, -1.49012e-08, -2.21633e-14, 1.49012e-08, 1, 1.78182e-08, 6.0628, 1.04795)
+bone_idx = 19
+
+[node name="Cube007" parent="enemyVisual/3/bot2/Empty/Armature/Skeleton3D" index="10"]
+transform = Transform3D(1, -4.06375e-07, 1.84921e-06, 6.38926e-07, 0.992164, -0.124941, -1.83993e-06, 0.124941, 0.992164, -1.31423, 0.172716, 2.20585)
+bone_idx = 23
+
+[node name="Cube006" parent="enemyVisual/3/bot2/Empty/Armature/Skeleton3D" index="11"]
+transform = Transform3D(-2.19008e-06, 1.29448e-06, 1, -0.715864, 0.69824, -2.45105e-06, -0.69824, -0.715864, -6.66478e-07, -1.2929, 1.76741, 0.923852)
+bone_idx = 24
+
+[node name="Cylinder004" parent="enemyVisual/3/bot2/Empty/Armature/Skeleton3D" index="12"]
+transform = Transform3D(-1.84193e-06, 1, -1.67607e-06, -0.424984, -2.17301e-06, -0.905201, -0.905201, -1.06803e-06, 0.424984, -1.29517, 3.40533, 0.137023)
+bone_idx = 25
+
+[node name="Roundcube" parent="enemyVisual/3/bot2/Empty/Armature/Skeleton3D" index="13"]
+transform = Transform3D(1, -1.77636e-14, 4.26326e-14, 1.77636e-14, 1, 0, -5.68434e-14, 0, 1, 1.78182e-08, 3.91475, -2.04219e-08)
+bone_idx = 26
+
+[node name="AnimationTree" type="AnimationTree" parent="enemyVisual/3"]
+tree_root = SubResource("AnimationNodeStateMachine_g81mx")
+anim_player = NodePath("../bot2/AnimationPlayer")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_61ft7")
+
 [editable path="enemyVisual/1/bot1"]
-[editable path="enemyVisual/2/bot2"]
-[editable path="enemyVisual/3/bot3"]
+[editable path="enemyVisual/2/bot3"]
+[editable path="enemyVisual/3/bot2"]
