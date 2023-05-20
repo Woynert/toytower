@@ -7,11 +7,12 @@ var enemiesSpawned = 1
 
 # health
 # speed
+# attack speed
 
 const enemiesBaseStats = [
-	[100, 0.055],
-	[200, 0.05],
-	[500, 0.02]
+	[100, 0.055, 1],
+	[200, 0.05, 1.5],
+	[500, 0.02, 3]
 ]
 
 # base enemy index
@@ -66,7 +67,7 @@ func setup_round(newRound: int):
 	elif round > 3:
 		difficulty = 1
 	else:
-		difficulty = 2
+		difficulty = 1
 	
 	currentEnemies = enemiesPerRound[difficulty]
 	enemiesSpawned = 0
@@ -103,7 +104,8 @@ func _on_spawn_timeout():
 			index,
 			enemyStats[1] * enemiesBaseStats[index][0],
 			enemyStats[2] * enemiesBaseStats[index][1],
-			enemyStats[3]
+			enemyStats[3],
+			enemiesBaseStats[index][2],
 		)
 
 		enemiesSpawned += 1
