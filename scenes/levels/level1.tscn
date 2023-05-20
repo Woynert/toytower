@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbd3fjp0ja4qb"]
+[gd_scene load_steps=9 format=3 uid="uid://dbd3fjp0ja4qb"]
 
 [ext_resource type="PackedScene" uid="uid://7gv6q50fuutj" path="res://scenes/player/player.tscn" id="1_578s2"]
-[ext_resource type="Script" path="res://scenes/levels/levelDriver.gd" id="1_k5t55"]
+[ext_resource type="Script" path="res://scenes/levels/levelSpawnerManager.gd" id="1_nln22"]
+[ext_resource type="Script" path="res://scenes/levels/levelDriver.gd" id="1_x43ip"]
 [ext_resource type="PackedScene" uid="uid://bfqty2lqku5lg" path="res://scenes/enemy/enemy.tscn" id="2_u5goc"]
 [ext_resource type="PackedScene" uid="uid://danmvmwlt236" path="res://scenes/map/cristal.tscn" id="4_jcoe5"]
+[ext_resource type="PackedScene" uid="uid://b37v1ira76rl1" path="res://scenes/ui/uiLooseWin.tscn" id="5_8avs2"]
 
 [sub_resource type="Curve3D" id="Curve3D_td5o5"]
 _data = {
@@ -12,12 +14,15 @@ _data = {
 }
 point_count = 4
 
-[node name="level1" type="Node3D"]
-script = ExtResource("1_k5t55")
-scnEnemy = ExtResource("2_u5goc")
+[sub_resource type="Curve3D" id="Curve3D_nxn5u"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -12.9982, 1.00001, 4.25828, -2.654, 0, -0.995, 2.654, 0, 0.995, -5.42728, 1.00001, 4.42286, -3.344, 0, -0.838, 3.344, 0, 0.838, 2.45245, 1, 4.32778, 0, 0, 0, 0, 0, 0, 8.30171, 1.00001, -0.919918),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
 
-[node name="timerSpawn" type="Timer" parent="."]
-wait_time = 3.0
+[node name="level1" type="Node3D"]
+script = ExtResource("1_x43ip")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -58,14 +63,28 @@ size = Vector3(1, 6, 36)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 2, -6)
 size = Vector3(1, 6, 34)
 
-[node name="enemyPaths" type="Node3D" parent="."]
+[node name="spawner" type="Node" parent="."]
+script = ExtResource("1_nln22")
+scnEnemy = ExtResource("2_u5goc")
 
-[node name="Path3D" type="Path3D" parent="enemyPaths"]
+[node name="timerSpawn" type="Timer" parent="spawner"]
+wait_time = 3.0
+
+[node name="enemyPaths" type="Node3D" parent="spawner"]
+
+[node name="Path3D" type="Path3D" parent="spawner/enemyPaths"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.490488, 0)
 curve = SubResource("Curve3D_td5o5")
 
-[node name="spawn" type="Marker3D" parent="enemyPaths/Path3D"]
+[node name="spawn" type="Marker3D" parent="spawner/enemyPaths/Path3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1, 1, -4)
+
+[node name="Path3D2" type="Path3D" parent="spawner/enemyPaths"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.490488, 0)
+curve = SubResource("Curve3D_nxn5u")
+
+[node name="spawn" type="Marker3D" parent="spawner/enemyPaths/Path3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0955, 0.999999, 4.25109)
 
 [node name="Player" parent="." instance=ExtResource("1_578s2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
@@ -77,9 +96,24 @@ shadow_enabled = true
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.938236, -0.226143, 0.261862, -0.0170327, 0.725732, 0.687766, -0.345575, -0.649748, 0.677057, 5.66073, 11, 7.92872)
 
-[node name="spawns" type="Node" parent="."]
-
 [node name="cristal" type="Node3D" parent="."]
 
 [node name="cristal" parent="cristal" instance=ExtResource("4_jcoe5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05251, 0.505459, -2.91715)
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="uiLooseWinWin" parent="ui" instance=ExtResource("5_8avs2")]
+visible = false
+layout_mode = 1
+
+[node name="uiLooseWinLoose" parent="ui" instance=ExtResource("5_8avs2")]
+visible = false
+layout_mode = 1
+win = false

@@ -18,36 +18,41 @@ func _ready():
 	gunRay.add_exception(self)
 	
 	# captures mouse 
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 func _physics_process(delta):
 	
-	# gravity
-	if not is_on_floor():
-		velocity.y -= GRAVITY * delta
+	if GlobalState.game_state == GlobalState.GAME_STATE.PLAYING:
 
-	# jump
-	if Input.is_action_just_pressed("gm_jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		
-	# shoot
-	if Input.is_action_just_pressed("gm_primary_action"):
-		shoot()
-		
-	# get the input direction and handle the movement / deceleration.
-	var input_dir = Input.get_vector("gm_left", "gm_right", "gm_up", "gm_down")
-	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		# gravity
+		if not is_on_floor():
+			velocity.y -= GRAVITY * delta
+
+		# jump
+		if Input.is_action_just_pressed("gm_jump") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+			
+		# shoot
+		if Input.is_action_just_pressed("gm_primary_action"):
+			shoot()
+			
+		# get the input direction and handle the movement / deceleration.
+		var input_dir = Input.get_vector("gm_left", "gm_right", "gm_up", "gm_down")
+		var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
 
 func _input(event):
 	if event is InputEventMouseMotion:
+		
+		if GlobalState.game_state != GlobalState.GAME_STATE.PLAYING:
+			return
 		
 		head.rotation.y -= event.relative.x / mouseSensibility
 		camera.rotation.x -= event.relative.y / mouseSensibility

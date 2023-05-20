@@ -36,7 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.9407e-09, 0.81543, -1.1175
 bone_idx = 3
 
 [node name="Circle" parent="visual/cristal/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.0704246, 8.2177e-09, 0.997517, 5.99301e-08, 1, -4.0071e-09, -0.997517, 5.94991e-08, -0.0704245, 3.60025e-09, 0.987772, -4.47559e-09)
+transform = Transform3D(-0.0704249, 8.21766e-09, 0.997517, 5.99302e-08, 1, -4.00703e-09, -0.997517, 5.94992e-08, -0.0704249, 3.60025e-09, 0.987776, -4.47559e-09)
 bone_idx = 5
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
