@@ -25,13 +25,15 @@ func selectEnemy(index: int):
 			
 	# get state machine 
 	
-	stateMachine = rootNode.get_node("AnimationTree").get("parameters/playback")
+	stateMachine = rootNode.get_node("AnimationTree").get("parameters/StateMachine/playback")
 	setAnimationState(ANI_STATE.IDLE)
 
 func setAnimationState (state: ANI_STATE):
 	
+	print("A ----")
 	if stateMachine == null:
 		return
+	print("B ----")
 		
 	match state:
 		ANI_STATE.IDLE:
@@ -41,3 +43,8 @@ func setAnimationState (state: ANI_STATE):
 		ANI_STATE.ATTACK:
 			stateMachine.start("attack")
 			
+func setAnimationSpeed (speed: float):
+	
+		#var timeScale: AnimationNodeTimeScale = rootNode.get_node("AnimationTree").get("parameters/TimeScale/scale")
+		rootNode.get_node("AnimationTree").set("parameters/TimeScale/scale", speed)
+		

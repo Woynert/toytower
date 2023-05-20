@@ -29,6 +29,7 @@ func showCurrentMenu():
 
 func play():
 	print("play")
+	get_tree().change_scene_to_file("res://scenes/levels/level1.tscn")
 
 func goToScores():
 	currMenu = Menu.SCORES

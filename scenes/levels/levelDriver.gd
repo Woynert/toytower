@@ -66,7 +66,7 @@ func setup_round(newRound: int):
 	elif round > 3:
 		difficulty = 1
 	else:
-		difficulty = 0
+		difficulty = 2
 	
 	currentEnemies = enemiesPerRound[difficulty]
 	enemiesSpawned = 0
