@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccl7bh6jui1r0"]
+[gd_scene load_steps=4 format=3 uid="uid://ccl7bh6jui1r0"]
 
 [ext_resource type="Script" path="res://scenes/ui/uiPlayer.gd" id="1_egp3b"]
 
@@ -8,6 +8,13 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6pts"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
 
 [node name="uiPlayer" type="Control"]
 custom_minimum_size = Vector2(150, 200)
@@ -121,3 +128,16 @@ text = "Cristal health"
 [node name="Control2" type="Control" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+custom_minimum_size = Vector2(3, 3)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u6pts")
