@@ -1,5 +1,7 @@
 extends Node
 
+@export var spawnTimeout: float = 3
+
 var difficulty = 0
 var round = 1
 var enemiesToSpawn = 1
@@ -10,7 +12,7 @@ var enemiesSpawned = 1
 # attack speed
 
 const enemiesBaseStats = [
-	[100, 0.055, 1],
+	[100, 0.055, 1.6],
 	[200, 0.05, 1.5],
 	[500, 0.02, 3]
 ]
@@ -53,7 +55,7 @@ var currentEnemies = enemiesPerRound[difficulty]
 func _ready():
 	randomize()
 	$timerSpawn.connect("timeout", _on_spawn_timeout)
-	$timerSpawn.start()
+	$timerSpawn.start(spawnTimeout)
 	
 	# setup round 1
 	setup_round(round)
@@ -109,4 +111,8 @@ func _on_spawn_timeout():
 		)
 
 		enemiesSpawned += 1
+		
+	# slightly change spawn wait time
+	
+	$timerSpawn.start(spawnTimeout + randf_range(-1, 1))
 

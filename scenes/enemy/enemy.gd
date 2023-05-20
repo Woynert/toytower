@@ -36,8 +36,10 @@ func _physics_process(delta):
 		
 		arrived = true
 		$timerAttack.start(attackSpeed)
-		($enemyVisual as EnemyVisual).setAnimationState(EnemyVisual.ANI_STATE.IDLE)
 		
+		attack()
+		($enemyVisual as EnemyVisual).setAnimationSpeed(1)
+
 func attack():
 	($enemyVisual as EnemyVisual).setAnimationState(EnemyVisual.ANI_STATE.ATTACK)
 	
