@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=5 format=3 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_jsnv8"]
+[ext_resource type="PackedScene" uid="uid://ccl7bh6jui1r0" path="res://scenes/ui/uiPlayer.tscn" id="2_2ndfv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rqwnu"]
 size = Vector3(1, 2, 1)
@@ -29,3 +30,14 @@ transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 0, -0.00
 target_position = Vector3(60, 0, 0)
 
 [node name="yaw" type="Node3D" parent="."]
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="uiPlayer" parent="ui" instance=ExtResource("2_2ndfv")]
+layout_mode = 1

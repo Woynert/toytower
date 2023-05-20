@@ -1,0 +1,123 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccl7bh6jui1r0"]
+
+[ext_resource type="Script" path="res://scenes/ui/uiPlayer.gd" id="1_egp3b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxr5p"]
+bg_color = Color(0.6, 0.231373, 0.423529, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="uiPlayer" type="Control"]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_egp3b")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(80, 100)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+color = Color(0, 0, 0, 0.45098)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 91.0
+
+[node name="Label2" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Wave"
+horizontal_alignment = 1
+
+[node name="lblWave" type="Label" parent="ColorRect/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(80, 60)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0, 0, 0, 0.45098)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect2"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 56.0
+
+[node name="lblUsername" type="Label" parent="ColorRect2/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Sasha"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="lblMoney" type="Label" parent="ColorRect2/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1250 $"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="progressCristalHealth" type="ProgressBar" parent="HBoxContainer/MarginContainer/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_wxr5p")
+value = 97.02
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cristal health"
+
+[node name="Control2" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

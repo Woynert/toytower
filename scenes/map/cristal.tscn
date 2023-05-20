@@ -23,20 +23,20 @@ node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
 [node name="cristal" parent="visual" instance=ExtResource("1_pwrxi")]
 
 [node name="Skeleton3D" parent="visual/cristal/Armature" index="0"]
-bones/2/position = Vector3(0, 0.683797, 0)
-bones/4/position = Vector3(0, 0.997449, 0)
-bones/4/rotation = Quaternion(2.1976e-08, 0.867002, 3.44198e-08, 0.498305)
+bones/2/position = Vector3(0, 0.711101, 0)
+bones/4/position = Vector3(0, 1.05804, 0)
+bones/4/rotation = Quaternion(2.97e-09, 0.731582, 4.07659e-08, 0.681753)
 
 [node name="Cylinder" parent="visual/cristal/Armature/Skeleton3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0176613, 0)
 bone_idx = 1
 
 [node name="Cylinder001" parent="visual/cristal/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.9407e-09, 0.788126, -1.11759e-08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.9407e-09, 0.81543, -1.11759e-08)
 bone_idx = 3
 
 [node name="Circle" parent="visual/cristal/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.503384, 5.53055e-08, 0.864063, 7.24097e-08, 1, -2.18221e-08, -0.864063, 5.15816e-08, -0.503384, -2.67242e-10, 0.927185, -5.73253e-09)
+transform = Transform3D(-0.0704246, 8.2177e-09, 0.997517, 5.99301e-08, 1, -4.0071e-09, -0.997517, 5.94991e-08, -0.0704245, 3.60025e-09, 0.987772, -4.47559e-09)
 bone_idx = 5
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
