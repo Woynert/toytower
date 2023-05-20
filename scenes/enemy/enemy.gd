@@ -12,7 +12,7 @@ func setup(enemyIndex: int, maxHealth: int, speed: float, scale: float):
 	
 	self.maxHealth = maxHealth
 	self.speed = speed
-	$enemyVisual.scale = Vector3.ONE * scale * 0.5
+	$enemyVisual.scale = Vector3.ONE * scale * 0.3
 	($enemyVisual as EnemyVisual).selectEnemy(enemyIndex)
 	($enemyVisual as EnemyVisual).setAnimationState(EnemyVisual.ANI_STATE.WALK)
 	($enemyVisual as EnemyVisual).setAnimationSpeed(speed * 50)

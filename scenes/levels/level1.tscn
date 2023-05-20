@@ -71,5 +71,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.933013, 0.258819, -0.25, 0.258819, 1.11291e-07, 0.965926, 0.25, -0.965926, -0.0669872, 0, 11, 0)
+shadow_enabled = true
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.938236, -0.226143, 0.261862, -0.0170327, 0.725732, 0.687766, -0.345575, -0.649748, 0.677057, 5.66073, 11, 7.92872)
 
 [node name="spawns" type="Node" parent="."]
