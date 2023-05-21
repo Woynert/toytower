@@ -75,7 +75,7 @@ func setup_round(newRound: int):
 	
 	currentEnemies = enemiesPerRound[difficulty]
 	enemiesSpawned = 0
-	enemiesToSpawn = round * 15
+	enemiesToSpawn = 15 + round * 5
 
 func _on_spawn_timeout():
 	

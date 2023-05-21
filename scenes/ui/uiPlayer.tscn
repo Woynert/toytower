@@ -137,7 +137,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="CenterContainer"]
+[node name="crosshair" type="Panel" parent="CenterContainer"]
 custom_minimum_size = Vector2(3, 3)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_u6pts")

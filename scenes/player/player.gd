@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 @onready var head = $head as Node3D
-@onready var camera = $head/camera as Camera3D
-@onready var gunRay = $head/camera/gunRay as RayCast3D
+@onready var camera = $head/ogCamera as Camera3D
+@onready var gunRay = $head/ogCamera/gunRay as RayCast3D
 
 var mouseSensibility = 800
 var mouseRelativeX = 0
