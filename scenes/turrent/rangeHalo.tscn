@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmvmgr53ake0c"]
+
+[ext_resource type="PackedScene" uid="uid://jaehjcr251np" path="res://assets/blender/halo.blend" id="1_0a3vl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jx61g"]
+radius = 1.0
+
+[node name="rangeHalo" type="Node3D"]
+
+[node name="visual" type="Node3D" parent="."]
+transform = Transform3D(0.14, 0, 0, 0, 0.3, 0, 0, 0, 0.14, 0, 0, 0)
+
+[node name="halo" parent="visual" instance=ExtResource("1_0a3vl")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false
+shape = SubResource("SphereShape3D_jx61g")

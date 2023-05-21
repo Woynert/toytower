@@ -5,6 +5,7 @@ extends Node3D
 @export var scnTurrent: PackedScene
 @export var playerAimPoint: PlayerAimPoint
 @export var playerRotatingHead: Node3D
+@export var rangeHalo: Node3D
 
 enum STATE{
 	NONE,
@@ -46,18 +47,27 @@ func _physics_process(delta):
 				setState(STATE.NONE)
 				
 			elif Input.is_action_just_pressed("gm_pick1"):
+				if GlobalState.money < DATA.turrent_prices[0]:
+					return
+					
 				uiPlayer.toggleTurrentSelect(false)
 				selectedTurrentIndex = 0
 				setState(STATE.PLACING_TURRENT)
 				createTurrent()
 				
 			elif Input.is_action_just_pressed("gm_pick2"):
+				if GlobalState.money < DATA.turrent_prices[1]:
+					return
+					
 				uiPlayer.toggleTurrentSelect(false)
 				selectedTurrentIndex = 1
 				setState(STATE.PLACING_TURRENT)
 				createTurrent()
 				
 			elif Input.is_action_just_pressed("gm_pick3"):
+				if GlobalState.money < DATA.turrent_prices[2]:
+					return
+					
 				uiPlayer.toggleTurrentSelect(false)
 				selectedTurrentIndex = 2
 				setState(STATE.PLACING_TURRENT)
@@ -69,10 +79,12 @@ func _physics_process(delta):
 			assert(createdTurrent is Turrent)
 			assert(playerRotatingHead is Node3D)
 			
+			rangeHalo.visible = false
 			createdTurrent.rotateBody(playerRotatingHead.rotation.y + PI)
 			
 			# cancel placement -> delete turrent
-			if Input.is_action_just_pressed("gm_escape"):
+			if (Input.is_action_just_pressed("gm_escape") || 
+				Input.is_action_just_pressed("gm_open_turrent_menu")):
 				
 				playerAimPoint.getNodePoint().remove_child(createdTurrent)
 				createdTurrent.queue_free()
@@ -87,6 +99,13 @@ func _physics_process(delta):
 			if !createdTurrent.isBodyFree():
 				return
 				
+			# show halo
+			rangeHalo.visible = true
+			
+			# TODO: move turrent
+			rangeHalo.scale.x = Turrent.BASE_RANGES[selectedTurrentIndex]
+			rangeHalo.scale.z = Turrent.BASE_RANGES[selectedTurrentIndex]
+				
 			# place turrent
 			if Input.is_action_just_pressed("gm_primary_action"):
 				
@@ -99,10 +118,13 @@ func _physics_process(delta):
 				createdTurrent.global_position = origin
 				createdTurrent.enable()
 				
-				# reset state
+				# update state
+				GlobalState.spendMoney(DATA.turrent_prices[selectedTurrentIndex])
 				setState(STATE.NONE)
 				createdTurrent = null
 				selectedTurrentIndex = -1
+				rangeHalo.visible = false
+				GlobalAudio.play_sound("build")
 				
 		STATE.ON_PAUSE_MENU:
 			

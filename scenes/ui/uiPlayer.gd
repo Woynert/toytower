@@ -18,7 +18,11 @@ func _physics_process(delta):
 	# DELETEME: input()
 
 func toggleTurrentSelect(toggle: bool):
+	
 	%turrentSelection.visible = toggle
+	%lblPrice1.text = "%d $" % DATA.turrent_prices[0]
+	%lblPrice2.text = "%d $" % DATA.turrent_prices[1]
+	%lblPrice3.text = "%d $" % DATA.turrent_prices[2]
 	
 func input():
 	

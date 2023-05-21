@@ -196,7 +196,8 @@ layout_mode = 2
 text = "TurreScatter"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="turrentSelection/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/turrentCard/MarginContainer/VBoxContainer"]
+[node name="lblPrice1" type="Label" parent="turrentSelection/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/turrentCard/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "200$"
 horizontal_alignment = 1
@@ -237,7 +238,8 @@ layout_mode = 2
 text = "TurreMotor"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="turrentSelection/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/turrentCard2/MarginContainer/VBoxContainer"]
+[node name="lblPrice2" type="Label" parent="turrentSelection/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/turrentCard2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "200$"
 horizontal_alignment = 1
@@ -278,7 +280,8 @@ layout_mode = 2
 text = "TurreCanon"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="turrentSelection/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/turrentCard3/MarginContainer/VBoxContainer"]
+[node name="lblPrice3" type="Label" parent="turrentSelection/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/turrentCard3/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "200$"
 horizontal_alignment = 1
