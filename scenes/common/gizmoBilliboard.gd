@@ -1,4 +1,5 @@
 extends Node3D
+class_name GizmoBilliboard
 
 var speed = 0.02
 var speedAlpha = 0.015

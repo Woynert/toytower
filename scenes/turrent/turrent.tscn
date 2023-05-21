@@ -1,11 +1,21 @@
-[gd_scene load_steps=20 format=3 uid="uid://d0uv22ho6x4wr"]
+[gd_scene load_steps=22 format=3 uid="uid://d0uv22ho6x4wr"]
 
 [ext_resource type="Script" path="res://scenes/turrent/turrent.gd" id="1_hqkyu"]
 [ext_resource type="Script" path="res://scenes/turrent/turrentVisual.gd" id="1_xipwt"]
 [ext_resource type="PackedScene" uid="uid://bdsl2pmea5c1" path="res://assets/blender/turrent1.blend" id="2_ua7jh"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7hses"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0onj3"]
 animation = &"turrent1-attack"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_va2v6"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_wc6ne"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_0onj3")
+nodes/Animation/position = Vector2(100, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_va2v6")
+nodes/TimeScale/position = Vector2(313, 161)
+nodes/output/position = Vector2(460, 160)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_no8nl"]
 animation = &"turrent1-idle"
@@ -22,10 +32,6 @@ animation = &"turrent3-attack"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dm8bk"]
 animation = &"turrent3-idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6dnni"]
-switch_mode = 2
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yf33u"]
 switch_mode = 2
 advance_mode = 2
@@ -34,17 +40,21 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d5a5b"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_srm71"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x552i"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n65rl"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_udk25"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jr47h"]
 states/End/position = Vector2(849, 152)
 states/Start/position = Vector2(297, 145)
-states/turrent1-attack/node = SubResource("AnimationNodeAnimation_7hses")
-states/turrent1-attack/position = Vector2(659, 75)
+states/turrent1-attack/node = SubResource("AnimationNodeBlendTree_wc6ne")
+states/turrent1-attack/position = Vector2(667, 75)
 states/turrent1-idle/node = SubResource("AnimationNodeAnimation_no8nl")
 states/turrent1-idle/position = Vector2(476, 75)
 states/turrent2-attack/node = SubResource("AnimationNodeAnimation_sbvvl")
@@ -55,7 +65,8 @@ states/turrent3-attack/node = SubResource("AnimationNodeAnimation_qe87y")
 states/turrent3-attack/position = Vector2(659, 225)
 states/turrent3-idle/node = SubResource("AnimationNodeAnimation_dm8bk")
 states/turrent3-idle/position = Vector2(476, 225)
-transitions = ["turrent1-attack", "turrent1-idle", SubResource("AnimationNodeStateMachineTransition_6dnni"), "turrent2-attack", "turrent2-idle", SubResource("AnimationNodeStateMachineTransition_yf33u"), "turrent3-attack", "turrent3-idle", SubResource("AnimationNodeStateMachineTransition_5y2lm"), "turrent1-idle", "turrent1-attack", SubResource("AnimationNodeStateMachineTransition_d5a5b"), "turrent2-idle", "turrent2-attack", SubResource("AnimationNodeStateMachineTransition_srm71"), "turrent3-idle", "turrent3-attack", SubResource("AnimationNodeStateMachineTransition_x552i")]
+transitions = ["turrent2-attack", "turrent2-idle", SubResource("AnimationNodeStateMachineTransition_yf33u"), "turrent3-attack", "turrent3-idle", SubResource("AnimationNodeStateMachineTransition_5y2lm"), "turrent2-idle", "turrent2-attack", SubResource("AnimationNodeStateMachineTransition_srm71"), "turrent3-idle", "turrent3-attack", SubResource("AnimationNodeStateMachineTransition_x552i"), "turrent1-idle", "turrent1-attack", SubResource("AnimationNodeStateMachineTransition_n65rl"), "turrent1-attack", "turrent1-idle", SubResource("AnimationNodeStateMachineTransition_udk25")]
+graph_offset = Vector2(137, -29)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qrgwg"]
 graph_offset = Vector2(-243, 51)
@@ -139,6 +150,7 @@ tree_root = SubResource("AnimationNodeBlendTree_qrgwg")
 anim_player = NodePath("../turrent1/AnimationPlayer")
 active = true
 parameters/StateMachine/playback = SubResource("AnimationNodeStateMachinePlayback_8u6is")
+parameters/StateMachine/turrent1-attack/TimeScale/scale = 2.0
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0

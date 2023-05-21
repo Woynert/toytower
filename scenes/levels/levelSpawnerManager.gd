@@ -14,7 +14,7 @@ var enemiesSpawned = 1
 
 const enemiesBaseStats = [
 	[100, 0.055, 1.6, 5],
-	[200, 0.05, 1.5, 8],
+	[120, 0.05, 1.5, 8],
 	[500, 0.02, 3, 15]
 ]
 
@@ -71,7 +71,7 @@ func setup_round(newRound: int):
 	elif round > 3:
 		difficulty = 1
 	else:
-		difficulty = 1
+		difficulty = 0
 	
 	currentEnemies = enemiesPerRound[difficulty]
 	enemiesSpawned = 0

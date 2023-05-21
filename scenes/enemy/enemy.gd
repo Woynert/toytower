@@ -9,6 +9,8 @@ var damage: float = 1
 
 var arrived: bool = false
 
+@export var damageBilliboard: PackedScene
+
 func _ready():
 	$timerAttack.connect("timeout", attack)
 
@@ -22,6 +24,7 @@ func setup(
 	):
 	
 	self.maxHealth = maxHealth
+	self.health = maxHealth
 	self.speed = speed
 	self.attackSpeed = attackSpeed
 	self.damage = damage
@@ -48,4 +51,22 @@ func attack():
 	
 	# damage cristal
 	GlobalState.damageCristal(self.damage)
+	
+func hurt(damage: int):
+	health = max(0, health - damage)
+	
+	# create gizmo
+	
+	var gizmo: GizmoBilliboard = damageBilliboard.instantiate()
+	gizmo.setup("-%d" % damage)
+	
+	get_tree().root.add_child(gizmo)
+	gizmo.global_position = self.global_position
+	gizmo.global_position.y += 2
+	
+	if health == 0:
+		die()
+		
+func die():
+	queue_free()
 

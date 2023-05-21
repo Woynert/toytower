@@ -27,7 +27,6 @@ func addEnemyKill():
 	
 func damageCristal(damage: int):
 	cristalHealth = max(0, cristalHealth - damage)
-	print(cristalHealth)
 	
 	if (cristalHealth <= 0):
 		set_game_state(GAME_STATE.LOST)

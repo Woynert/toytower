@@ -8,3 +8,5 @@ script = ExtResource("1_tig5s")
 [node name="Label3D" type="Label3D" parent="."]
 billboard = 1
 text = "- 15"
+font_size = 50
+outline_size = 9
