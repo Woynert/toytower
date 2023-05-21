@@ -75,5 +75,6 @@ func hurt(damage: int):
 func die():
 	
 	GlobalState.addEnemyKill()
+	GlobalState.addMoney(ceil(maxHealth))
 	queue_free()
 

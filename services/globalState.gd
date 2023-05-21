@@ -10,14 +10,19 @@ signal sig_game_state_changed
 signal sig_round_advanced
 
 var game_state: GAME_STATE = GAME_STATE.PLAYING
+const winningRound = 3
+const cristalMaxHealth = 100
+
+# rounds
 
 var round = 1
-var winningRound = 3
 var killedEnemies = 0
 var enemiesToSpawn = 1
-
-var cristalMaxHealth = 100
 var cristalHealth = cristalMaxHealth
+
+# player
+
+var money = 0
 
 # game progress
 
@@ -39,6 +44,15 @@ func damageCristal(damage: int):
 		
 func setEnemiesToSpawn(amount: int):
 	enemiesToSpawn = amount
+	
+# player
+
+func addMoney(amount):
+	money += amount
+	
+func spendMoney(amount):
+	assert(amount <= money)
+	money -= amount
 
 # game life cycle
 
@@ -58,7 +72,6 @@ func advanceRound():
 	# reset state
 	
 	killedEnemies = 0
-	cristalHealth = cristalMaxHealth
 
 func set_game_state(state: GAME_STATE):
 	game_state = state
@@ -67,6 +80,7 @@ func set_game_state(state: GAME_STATE):
 func reset_game():
 	round = 1
 	killedEnemies = 0
+	enemiesToSpawn = 1
 	cristalHealth = cristalMaxHealth
 	
 	set_game_state(GAME_STATE.PLAYING)
