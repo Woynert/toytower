@@ -34,6 +34,19 @@ scenes
 		win menu
 		loose memu
 		
+# sounds
+
+- menu bip
+- turrent building
+- turrent shot
+- turrent cannon
+- player melee swing
+- robot melee
+- robot die
+- enemy spawn
+- loose
+- win
+
 # collision layers
 
 - 1 general
