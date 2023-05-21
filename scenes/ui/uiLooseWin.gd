@@ -17,7 +17,9 @@ func _ready():
 		%lblInfo.text = "The robots have destroyed your cristal. Good luck next time"
 
 func on_return():
+	GlobalAudio.play_sound("beep2")
 	get_tree().change_scene_to_file("res://scenes/levels/mainStage.tscn")
 	
 func on_retry():
+	GlobalAudio.play_sound("beep2")
 	get_tree().reload_current_scene()

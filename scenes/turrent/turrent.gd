@@ -2,7 +2,8 @@ extends Node3D
 class_name Turrent
 
 const BASE_SHOOT_TIMES = [0.4, 1.2, 2]
-const BASE_DAMAGES = [2, 10, 50]
+const BASE_DAMAGES = [5, 25, 60]
+const BASE_RANGES = [7, 5, 1.2]
 
 var target: Node3D
 var ray: RayCast3D
@@ -18,8 +19,6 @@ func _ready():
 	ray = $RayCast3D
 	visual = $visual
 	
-	($areaShootRange/CollisionShape3D.shape as SphereShape3D).radius = reachDistance
-	
 	if autoEnable:
 		setup(turrentIndex)
 		enable()
@@ -28,6 +27,9 @@ func setup(index: int):
 	turrentIndex = index
 	
 	damage = BASE_DAMAGES[index]
+	reachDistance = BASE_RANGES[index]
+	
+	($areaShootRange/CollisionShape3D.shape as SphereShape3D).radius = reachDistance
 	visual.setup(index)
 	
 func enable():
@@ -59,7 +61,13 @@ func shoot():
 	assert(enemy is Enemy)
 	enemy.hurt(damage)
 	
+	# feedbach
 	visual.playAnimation("turrent%d-attack" % (turrentIndex + 1))
+	
+	if turrentIndex < 2:
+		GlobalAudio.play_sound("turrent-shot")
+	else:
+		GlobalAudio.play_sound("canon")
 
 func retarget():
 	

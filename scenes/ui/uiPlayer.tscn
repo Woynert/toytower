@@ -196,6 +196,14 @@ layout_mode = 2
 text = "TurreScatter"
 horizontal_alignment = 1
 
+[node name="Label4" type="Label" parent="turrentSelection/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/turrentCard/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.984314, 0.764706, 1)
+theme_override_font_sizes/font_size = 12
+text = "- Damage
++ Range"
+horizontal_alignment = 1
+
 [node name="lblPrice1" type="Label" parent="turrentSelection/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/turrentCard/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -238,6 +246,14 @@ layout_mode = 2
 text = "TurreMotor"
 horizontal_alignment = 1
 
+[node name="Label3" type="Label" parent="turrentSelection/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/turrentCard2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.984314, 0.764706, 1)
+theme_override_font_sizes/font_size = 12
+text = "+ Damage
+- Range"
+horizontal_alignment = 1
+
 [node name="lblPrice2" type="Label" parent="turrentSelection/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/turrentCard2/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -278,6 +294,14 @@ expand_mode = 4
 [node name="Label" type="Label" parent="turrentSelection/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/turrentCard3/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "TurreCanon"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="turrentSelection/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/turrentCard3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.984314, 0.764706, 1)
+theme_override_font_sizes/font_size = 12
+text = "++ Damage
+-- Range"
 horizontal_alignment = 1
 
 [node name="lblPrice3" type="Label" parent="turrentSelection/CenterContainer/PanelContainer/MarginContainer/HBoxContainer/turrentCard3/MarginContainer/VBoxContainer"]

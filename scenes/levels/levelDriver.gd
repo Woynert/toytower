@@ -21,8 +21,10 @@ func _on_game_state_change():
 			$ui/uiLooseWinWin.visible = true
 			$ui/uiLooseWinLoose.visible = false
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			GlobalAudio.play_sound("loose")
 			
 		GlobalState.GAME_STATE.LOST:
 			$ui/uiLooseWinWin.visible = false
 			$ui/uiLooseWinLoose.visible = true
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			GlobalAudio.play_sound("loose")

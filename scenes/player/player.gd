@@ -69,6 +69,7 @@ func shoot():
 	# play animation
 	(%visualFPS as PlayerVisualFPS).playAnimation(PlayerVisualFPS.ANI.ATTACK)
 	
+	
 	"""
 	if not gunRay.is_colliding():
 		return

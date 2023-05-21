@@ -105,7 +105,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0955, 0.999999, 4.25109)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.748474, 0)
 
 [node name="turrent" parent="." instance=ExtResource("5_jq7r7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.02946, 0.508225, 3.48057)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.02946, 0.508225, 8.69863)
 autoEnable = true
 
 [node name="turrent2" parent="." instance=ExtResource("5_jq7r7")]

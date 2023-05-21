@@ -27,7 +27,6 @@ const enemiesPerRound = [
 	[
 		[0, 1, 1, 1, 0.8],
 		[0, 0.25, 1.2, 0.5, 0.5],
-		[1, 1, 1, 1, 1],
 		[1, 0.25, 1.6, 0.5, 0.7],
 	],
 	
@@ -114,7 +113,11 @@ func _on_spawn_timeout():
 
 		enemiesSpawned += 1
 		
+		# sound
+		
+		GlobalAudio.play_sound("robot-spawn")
+		
 	# slightly change spawn wait time
 	
-	$timerSpawn.start(spawnTimeout + randf_range(-1, 1))
+	$timerSpawn.start(spawnTimeout + randf_range(-2, 1))
 

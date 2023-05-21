@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=22 format=3 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_jsnv8"]
 [ext_resource type="PackedScene" uid="uid://ccl7bh6jui1r0" path="res://scenes/ui/uiPlayer.tscn" id="2_2ndfv"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scenes/player/playerAimPoint.gd" id="3_g1ays"]
 [ext_resource type="PackedScene" uid="uid://d0uv22ho6x4wr" path="res://scenes/turrent/turrent.tscn" id="3_snghn"]
 [ext_resource type="PackedScene" uid="uid://mrp6ae8ctlod" path="res://assets/blender/sasha.blend" id="4_gj22y"]
+[ext_resource type="PackedScene" uid="uid://bmvmgr53ake0c" path="res://scenes/turrent/rangeHalo.tscn" id="5_kjwlu"]
 [ext_resource type="PackedScene" uid="uid://bt2vcwe41g5x2" path="res://scenes/ui/uiPauseMenu.tscn" id="8_uobrf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rqwnu"]
@@ -58,43 +59,49 @@ node_connections = [&"output", 0, &"StateMachine"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4yfoe"]
 
-[node name="player" type="CharacterBody3D"]
+[node name="playerRoot" type="Node3D"]
+
+[node name="player" type="CharacterBody3D" parent="."]
 script = ExtResource("1_jsnv8")
 
-[node name="CollisionShape3d" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3d" type="CollisionShape3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_rqwnu")
 
-[node name="playerInventory" type="Node3D" parent="." node_paths=PackedStringArray("uiPlayer", "uiPause", "playerAimPoint", "playerRotatingHead")]
+[node name="head" type="Node3D" parent="player"]
+
+[node name="ogCamera" type="Camera3D" parent="player/head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.681, 0)
+cull_mask = 1048573
+current = true
+
+[node name="gunRay" type="RayCast3D" parent="player/head/ogCamera"]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 0, -0.00588068, 0.463024)
+target_position = Vector3(6, 0, 0)
+collision_mask = 2
+
+[node name="yaw" type="Node3D" parent="player"]
+
+[node name="playerInventory" type="Node3D" parent="player" node_paths=PackedStringArray("uiPlayer", "uiPause", "playerAimPoint", "playerRotatingHead", "rangeHalo")]
 script = ExtResource("2_47gsl")
 uiPlayer = NodePath("../ui/uiPlayer")
 uiPause = NodePath("../ui/uiPauseMenu")
 scnTurrent = ExtResource("3_snghn")
 playerAimPoint = NodePath("../playerAimPoint")
 playerRotatingHead = NodePath("../head")
+rangeHalo = NodePath("../playerAimPoint/aimPoint/rangeHalo")
 
-[node name="playerAimPoint" type="Node3D" parent="." node_paths=PackedStringArray("ray")]
+[node name="playerAimPoint" type="Node3D" parent="player" node_paths=PackedStringArray("ray")]
 script = ExtResource("3_g1ays")
 ray = NodePath("../head/ogCamera/gunRay")
 
-[node name="aimPoint" type="MeshInstance3D" parent="playerAimPoint"]
+[node name="aimPoint" type="MeshInstance3D" parent="player/playerAimPoint"]
 mesh = SubResource("PrismMesh_imvib")
 
-[node name="head" type="Node3D" parent="."]
+[node name="rangeHalo" parent="player/playerAimPoint/aimPoint" instance=ExtResource("5_kjwlu")]
+visible = false
 
-[node name="ogCamera" type="Camera3D" parent="head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.681, 0)
-cull_mask = 1048573
-current = true
-
-[node name="gunRay" type="RayCast3D" parent="head/ogCamera"]
-transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 0, -0.00588068, 0.463024)
-target_position = Vector3(6, 0, 0)
-collision_mask = 2
-
-[node name="yaw" type="Node3D" parent="."]
-
-[node name="ui" type="Control" parent="."]
+[node name="ui" type="Control" parent="player"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,7 +109,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="ui"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="player/ui"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,38 +118,38 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="ui/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="player/ui/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
 gui_disable_input = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="gunCamera" type="Camera3D" parent="ui/SubViewportContainer/SubViewport"]
+[node name="gunCamera" type="Camera3D" parent="player/ui/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.681, 0)
 cull_mask = 2
 current = true
 
-[node name="visualFPS" type="Node3D" parent="ui/SubViewportContainer/SubViewport/gunCamera" node_paths=PackedStringArray("gunCamera", "ogCamera")]
+[node name="visualFPS" type="Node3D" parent="player/ui/SubViewportContainer/SubViewport/gunCamera" node_paths=PackedStringArray("gunCamera", "ogCamera")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.681, 0)
 script = ExtResource("3_7e1f2")
 gunCamera = NodePath("..")
 ogCamera = NodePath("../../../../../head/ogCamera")
 
-[node name="AnimationTree" type="AnimationTree" parent="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS"]
+[node name="AnimationTree" type="AnimationTree" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS"]
 tree_root = SubResource("AnimationNodeBlendTree_j8wrk")
 anim_player = NodePath("../model/sasha/AnimationPlayer")
 active = true
 parameters/StateMachine/playback = SubResource("AnimationNodeStateMachinePlayback_lsfcn")
 parameters/StateMachine/fps-attack/TimeScale/scale = 1.2
 
-[node name="model" type="Node3D" parent="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS"]
+[node name="model" type="Node3D" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS"]
 transform = Transform3D(-0.3, 0, -2.62268e-08, 0, 0.3, 0, 2.62268e-08, 0, -0.3, 0, 0, -0.145)
 
-[node name="sasha" parent="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model" instance=ExtResource("4_gj22y")]
+[node name="sasha" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model" instance=ExtResource("4_gj22y")]
 
-[node name="Skeleton3D" parent="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature" index="0"]
+[node name="Skeleton3D" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature" index="0"]
 bones/0/position = Vector3(0, 0, -5.57347)
 bones/0/rotation = Quaternion(-2.98023e-08, 1.19209e-07, 3.19734e-36, 1)
 bones/1/rotation = Quaternion(4.59384e-06, 1.1019e-13, 1, -1.09823e-12)
@@ -159,7 +166,7 @@ bones/9/rotation = Quaternion(0.0341114, -0.00701354, 0.0476301, 0.998258)
 bones/10/rotation = Quaternion(-0.00526581, 0.000319411, -0.071152, 0.997452)
 bones/12/rotation = Quaternion(0.0717495, -0.0192873, 0.0209818, 0.997016)
 bones/13/scale = Vector3(0, 0, 0)
-bones/17/position = Vector3(-0.81304, 0.090734, 5.54863)
+bones/17/position = Vector3(-0.81304, 0.169236, 5.54863)
 bones/17/rotation = Quaternion(-0.0246597, 0.596684, 0.784173, 0.168621)
 bones/18/rotation = Quaternion(0.0678272, 0.0365491, 0.0734546, 0.994318)
 bones/19/rotation = Quaternion(0.0137811, 0.314572, -0.0190299, 0.948943)
@@ -177,34 +184,34 @@ bones/29/scale = Vector3(0, 0, 0)
 bones/30/position = Vector3(-3.38094, 41.3069, 1.95943)
 bones/30/scale = Vector3(0, 0, 0)
 
-[node name="Roundcube" parent="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="0"]
+[node name="Roundcube" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="0"]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -2.01714e-14, 2.83888, -5.57347)
 bone_idx = 14
 
-[node name="Cube001" parent="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="1"]
+[node name="Cube001" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="1"]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -2.01714e-14, 2.83888, -5.57347)
 bone_idx = 15
 
-[node name="Roundcube001" parent="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="2"]
+[node name="Roundcube001" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="2"]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -2.01714e-14, 2.83888, -5.57347)
 bone_idx = 16
 
-[node name="Cylinder008" parent="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="3"]
-transform = Transform3D(-0.128889, -0.471686, 0.872296, -0.120963, 0.880543, 0.45827, -0.984254, -0.0464504, -0.170547, -1.314, 1.05629, 3.10134)
+[node name="Cylinder008" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="3"]
+transform = Transform3D(-0.128889, -0.471686, 0.872296, -0.120963, 0.880543, 0.45827, -0.984254, -0.0464504, -0.170547, -1.314, 1.13479, 3.10134)
 bone_idx = 24
 
-[node name="Cylinder009" parent="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.128889, -0.471686, 0.872296, -0.120963, 0.880543, 0.45827, -0.984254, -0.0464504, -0.170547, -2.17692, 2.66719, 3.01637)
+[node name="Cylinder009" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="4"]
+transform = Transform3D(-0.128889, -0.471686, 0.872296, -0.120963, 0.880543, 0.45827, -0.984254, -0.0464504, -0.170547, -2.17692, 2.74569, 3.01637)
 bone_idx = 25
 
-[node name="Cylinder009" parent="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D/Cylinder009" index="0"]
+[node name="Cylinder009" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D/Cylinder009" index="0"]
 layers = 3
 surface_material_override/0 = SubResource("StandardMaterial3D_4yfoe")
 
-[node name="uiPlayer" parent="ui" instance=ExtResource("2_2ndfv")]
+[node name="uiPlayer" parent="player/ui" instance=ExtResource("2_2ndfv")]
 layout_mode = 1
 
-[node name="uiPauseMenu" parent="ui" instance=ExtResource("8_uobrf")]
+[node name="uiPauseMenu" parent="player/ui" instance=ExtResource("8_uobrf")]
 layout_mode = 1
 
-[editable path="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha"]
+[editable path="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha"]

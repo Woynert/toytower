@@ -10,7 +10,7 @@ signal sig_game_state_changed
 signal sig_round_advanced
 
 var game_state: GAME_STATE = GAME_STATE.PLAYING
-const winningRound = 3
+const winningRound = 8
 const cristalMaxHealth = 100
 
 # rounds
@@ -39,7 +39,7 @@ func addEnemyKill():
 func damageCristal(damage: int):
 	cristalHealth = max(0, cristalHealth - damage)
 	
-	if (cristalHealth <= 0):
+	if cristalHealth <= 0 && game_state != GAME_STATE.LOST:
 		set_game_state(GAME_STATE.LOST)
 		
 func setEnemiesToSpawn(amount: int):
@@ -72,12 +72,16 @@ func advanceRound():
 	# reset state
 	
 	killedEnemies = 0
+	
+	GlobalAudio.play_sound("loose")
 
 func set_game_state(state: GAME_STATE):
 	game_state = state
 	sig_game_state_changed.emit()
 
 func reset_game():
+	
+	money = 110
 	round = 1
 	killedEnemies = 0
 	enemiesToSpawn = 1

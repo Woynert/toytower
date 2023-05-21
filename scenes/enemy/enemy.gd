@@ -37,6 +37,7 @@ func setup(
 func _physics_process(delta):
 	
 	if GlobalState.game_state != GlobalState.GAME_STATE.PLAYING:
+		$timerAttack.stop()
 		return
 	
 	# move along path
@@ -52,10 +53,12 @@ func _physics_process(delta):
 		($enemyVisual as EnemyVisual).setAnimationSpeed(1)
 
 func attack():
+	
 	($enemyVisual as EnemyVisual).setAnimationState(EnemyVisual.ANI_STATE.ATTACK)
 	
 	# damage cristal
 	GlobalState.damageCristal(self.damage)
+	GlobalAudio.play_sound("enemy-hit")
 	
 func hurt(damage: int):
 	health = max(0, health - damage)
@@ -76,5 +79,6 @@ func die():
 	
 	GlobalState.addEnemyKill()
 	GlobalState.addMoney(ceil(maxHealth))
+	GlobalAudio.play_sound("enemy-die")
 	queue_free()
 

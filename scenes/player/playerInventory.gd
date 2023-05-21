@@ -36,6 +36,7 @@ func _physics_process(delta):
 			# open turrent menu
 			if Input.is_action_just_pressed("gm_open_turrent_menu"):
 				uiPlayer.toggleTurrentSelect(true)
+				GlobalAudio.play_sound("beep2")
 				setState(STATE.ON_TURRENT_MENU)
 				
 		STATE.ON_TURRENT_MENU:
@@ -51,6 +52,7 @@ func _physics_process(delta):
 					return
 					
 				uiPlayer.toggleTurrentSelect(false)
+				GlobalAudio.play_sound("beep2")
 				selectedTurrentIndex = 0
 				setState(STATE.PLACING_TURRENT)
 				createTurrent()
@@ -60,6 +62,7 @@ func _physics_process(delta):
 					return
 					
 				uiPlayer.toggleTurrentSelect(false)
+				GlobalAudio.play_sound("beep2")
 				selectedTurrentIndex = 1
 				setState(STATE.PLACING_TURRENT)
 				createTurrent()
@@ -69,6 +72,7 @@ func _physics_process(delta):
 					return
 					
 				uiPlayer.toggleTurrentSelect(false)
+				GlobalAudio.play_sound("beep2")
 				selectedTurrentIndex = 2
 				setState(STATE.PLACING_TURRENT)
 				createTurrent()

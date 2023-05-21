@@ -51,5 +51,6 @@ func playAnimation(ani: ANI):
 		ANI.ATTACK:
 			if stateMachine.get_current_node() != "fps-attack":
 				stateMachine.start("fps-attack")
+				GlobalAudio.play_sound("player-hit")
 	
 
