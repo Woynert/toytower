@@ -53,6 +53,5 @@ func rotateBody(angle: float):
 		node.rotation.y = angle
 
 func playAnimation(animation: String):
-	print(animation)
 	stateMachine.start(animation)
 	

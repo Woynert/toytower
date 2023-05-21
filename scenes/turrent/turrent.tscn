@@ -80,7 +80,7 @@ node_connections = [&"output", 0, &"StateMachine"]
 radius = 18.261
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wo8og"]
-size = Vector3(0.5, 1, 0.5)
+size = Vector3(0.5, 0.763091, 0.5)
 
 [node name="turrent" type="Node3D"]
 script = ExtResource("1_hqkyu")
@@ -112,12 +112,16 @@ bone_idx = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.904565, 1.16739, -0.0138613)
 bone_idx = 5
 
+[node name="Skeleton3D" parent="visual/turrent1/root/head2" index="0"]
+bones/1/scale = Vector3(1, 1, 1)
+bones/3/scale = Vector3(1, 1, 1)
+
 [node name="Cylinder" parent="visual/turrent1/root/head2/Skeleton3D" index="0"]
-transform = Transform3D(1.52344, -9.68498e-08, 8.65977e-14, 9.68497e-08, 1.52344, 2.72413e-07, -1.4938e-13, -2.72413e-07, 1.52344, 0.830542, 1.25611, -0.291947)
+transform = Transform3D(1.52344, -9.68499e-08, 8.65977e-14, 9.68496e-08, 1.52344, 2.72413e-07, -1.4938e-13, -2.72413e-07, 1.52344, 0.830542, 1.25611, -0.291947)
 bone_idx = 2
 
 [node name="Cylinder002" parent="visual/turrent1/root/head2/Skeleton3D" index="1"]
-transform = Transform3D(1.52344, 9.68498e-08, -8.65977e-14, -9.68497e-08, 1.52344, 2.72413e-07, 1.4938e-13, -2.72413e-07, 1.52344, -0.830542, 1.25611, -0.291947)
+transform = Transform3D(1.52344, 9.68499e-08, -8.65977e-14, -9.68496e-08, 1.52344, 2.72413e-07, 1.4938e-13, -2.72413e-07, 1.52344, -0.830542, 1.25611, -0.291947)
 bone_idx = 4
 
 [node name="head2base" parent="visual/turrent1/root/head2/Skeleton3D" index="2"]
@@ -160,17 +164,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 target_position = Vector3(0, 0, 20)
 collision_mask = 2
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="areaShootRange" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="areaShootRange"]
 shape = SubResource("SphereShape3D_facyv")
 
+[node name="areaBody" type="Area3D" parent="."]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="areaBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58551, 0)
+shape = SubResource("BoxShape3D_wo8og")
+
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.586, 0)
 shape = SubResource("BoxShape3D_wo8og")
 
 [editable path="visual/turrent1"]

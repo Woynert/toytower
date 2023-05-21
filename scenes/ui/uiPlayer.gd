@@ -13,7 +13,7 @@ func _physics_process(delta):
 	%lblWave.text = str(GlobalState.round)
 	%progressCristalHealth.value = floor((float(GlobalState.cristalHealth) / GlobalState.cristalMaxHealth) * 100)
 	
-	input()
+	# DELETEME: input()
 
 func toggleTurrentSelect(toggle: bool):
 	%turrentSelection.visible = toggle

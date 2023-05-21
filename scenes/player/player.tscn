@@ -1,16 +1,18 @@
-[gd_scene load_steps=19 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=20 format=3 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_jsnv8"]
 [ext_resource type="PackedScene" uid="uid://ccl7bh6jui1r0" path="res://scenes/ui/uiPlayer.tscn" id="2_2ndfv"]
 [ext_resource type="Script" path="res://scenes/player/playerInventory.gd" id="2_47gsl"]
 [ext_resource type="Script" path="res://scenes/player/playerVisualFPS.gd" id="3_7e1f2"]
 [ext_resource type="Script" path="res://scenes/player/playerAimPoint.gd" id="3_g1ays"]
+[ext_resource type="PackedScene" uid="uid://d0uv22ho6x4wr" path="res://scenes/turrent/turrent.tscn" id="3_snghn"]
 [ext_resource type="PackedScene" uid="uid://mrp6ae8ctlod" path="res://assets/blender/sasha.blend" id="4_gj22y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rqwnu"]
 size = Vector3(1, 2, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_imvib"]
+size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yu2w8"]
 animation = &"fps-attack"
@@ -62,16 +64,18 @@ script = ExtResource("1_jsnv8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_rqwnu")
 
-[node name="playerInventory" type="Node3D" parent="." node_paths=PackedStringArray("ui")]
+[node name="playerInventory" type="Node3D" parent="." node_paths=PackedStringArray("ui", "playerAimPoint", "playerRotatingHead")]
 script = ExtResource("2_47gsl")
 ui = NodePath("../ui/uiPlayer")
+scnTurrent = ExtResource("3_snghn")
+playerAimPoint = NodePath("../playerAimPoint")
+playerRotatingHead = NodePath("../head")
 
 [node name="playerAimPoint" type="Node3D" parent="." node_paths=PackedStringArray("ray")]
 script = ExtResource("3_g1ays")
 ray = NodePath("../head/ogCamera/gunRay")
 
 [node name="aimPoint" type="MeshInstance3D" parent="playerAimPoint"]
-transform = Transform3D(0.24, 0, 0, 0, 0.24, 0, 0, 0, 0.24, 0, 0, 0)
 mesh = SubResource("PrismMesh_imvib")
 
 [node name="head" type="Node3D" parent="."]
@@ -83,7 +87,7 @@ current = true
 
 [node name="gunRay" type="RayCast3D" parent="head/ogCamera"]
 transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 0, -0.00588068, 0.463024)
-target_position = Vector3(60, 0, 0)
+target_position = Vector3(6, 0, 0)
 collision_mask = 2
 
 [node name="yaw" type="Node3D" parent="."]
@@ -153,7 +157,7 @@ bones/9/rotation = Quaternion(0.0341114, -0.00701354, 0.0476301, 0.998258)
 bones/10/rotation = Quaternion(-0.00526581, 0.000319411, -0.071152, 0.997452)
 bones/12/rotation = Quaternion(0.0717495, -0.0192873, 0.0209818, 0.997016)
 bones/13/scale = Vector3(0, 0, 0)
-bones/17/position = Vector3(-0.81304, 0.161232, 5.54863)
+bones/17/position = Vector3(-0.81304, 0.153064, 5.54863)
 bones/17/rotation = Quaternion(-0.0246597, 0.596684, 0.784173, 0.168621)
 bones/18/rotation = Quaternion(0.0678272, 0.0365491, 0.0734546, 0.994318)
 bones/19/rotation = Quaternion(0.0137811, 0.314572, -0.0190299, 0.948943)
@@ -184,11 +188,11 @@ transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -2.01714e-14, 2.83888, -5.573
 bone_idx = 16
 
 [node name="Cylinder008" parent="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="3"]
-transform = Transform3D(-0.128889, -0.471686, 0.872296, -0.120963, 0.880543, 0.45827, -0.984254, -0.0464504, -0.170547, -1.314, 1.12678, 3.10134)
+transform = Transform3D(-0.128889, -0.471686, 0.872296, -0.120963, 0.880543, 0.45827, -0.984254, -0.0464504, -0.170547, -1.314, 1.11862, 3.10134)
 bone_idx = 24
 
 [node name="Cylinder009" parent="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.128889, -0.471686, 0.872296, -0.120963, 0.880543, 0.45827, -0.984254, -0.0464504, -0.170547, -2.17692, 2.73768, 3.01637)
+transform = Transform3D(-0.128889, -0.471686, 0.872296, -0.120963, 0.880543, 0.45827, -0.984254, -0.0464504, -0.170547, -2.17692, 2.72952, 3.01637)
 bone_idx = 25
 
 [node name="Cylinder009" parent="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D/Cylinder009" index="0"]

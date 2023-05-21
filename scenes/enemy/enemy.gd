@@ -60,7 +60,7 @@ func hurt(damage: int):
 	var gizmo: GizmoBilliboard = damageBilliboard.instantiate()
 	gizmo.setup("-%d" % damage)
 	
-	get_tree().root.add_child(gizmo)
+	get_tree().get_current_scene().add_child(gizmo)
 	gizmo.global_position = self.global_position
 	gizmo.global_position.y += 2
 	
