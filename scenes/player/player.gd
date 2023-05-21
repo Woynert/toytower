@@ -22,11 +22,14 @@ func _ready():
 	
 func _physics_process(delta):
 	
+	# gravity
+	if not is_on_floor():
+		velocity.y -= GRAVITY * delta
+	
+	# inputs
+	var direction = Vector2.ZERO
+	
 	if GlobalState.game_state == GlobalState.GAME_STATE.PLAYING:
-
-		# gravity
-		if not is_on_floor():
-			velocity.y -= GRAVITY * delta
 
 		# jump
 		if Input.is_action_just_pressed("gm_jump") and is_on_floor():
@@ -38,17 +41,14 @@ func _physics_process(delta):
 			
 		# get the input direction and handle the movement / deceleration.
 		var input_dir = Input.get_vector("gm_left", "gm_right", "gm_up", "gm_down")
-		var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		if direction:
-			velocity.x = direction.x * SPEED
-			velocity.z = direction.z * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			velocity.z = move_toward(velocity.z, 0, SPEED)
+		direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
 	else:
-		velocity.x = 0
-		velocity.z = 0
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
 

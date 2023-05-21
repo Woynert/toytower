@@ -136,7 +136,7 @@ bones/9/rotation = Quaternion(0.0341114, -0.00701354, 0.0476301, 0.998258)
 bones/10/rotation = Quaternion(-0.00526581, 0.000319411, -0.071152, 0.997452)
 bones/12/rotation = Quaternion(0.0717495, -0.0192873, 0.0209818, 0.997016)
 bones/13/scale = Vector3(0, 0, 0)
-bones/17/position = Vector3(-0.81304, 0.0618055, 5.54863)
+bones/17/position = Vector3(-0.81304, 0.113172, 5.54863)
 bones/17/rotation = Quaternion(-0.0246597, 0.596684, 0.784173, 0.168621)
 bones/18/rotation = Quaternion(0.0678272, 0.0365491, 0.0734546, 0.994318)
 bones/19/rotation = Quaternion(0.0137811, 0.314572, -0.0190299, 0.948943)
@@ -167,11 +167,11 @@ transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -2.01714e-14, 2.83888, -5.573
 bone_idx = 16
 
 [node name="Cylinder008" parent="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="3"]
-transform = Transform3D(-0.128889, -0.471686, 0.872296, -0.120963, 0.880543, 0.45827, -0.984254, -0.0464504, -0.170547, -1.314, 1.02736, 3.10134)
+transform = Transform3D(-0.128889, -0.471686, 0.872296, -0.120963, 0.880543, 0.45827, -0.984254, -0.0464504, -0.170547, -1.314, 1.07872, 3.10134)
 bone_idx = 24
 
 [node name="Cylinder009" parent="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.128889, -0.471686, 0.872296, -0.120963, 0.880543, 0.45827, -0.984254, -0.0464504, -0.170547, -2.17692, 2.63826, 3.01637)
+transform = Transform3D(-0.128889, -0.471686, 0.872296, -0.120963, 0.880543, 0.45827, -0.984254, -0.0464504, -0.170547, -2.17692, 2.68962, 3.01637)
 bone_idx = 25
 
 [node name="Cylinder009" parent="ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D/Cylinder009" index="0"]
