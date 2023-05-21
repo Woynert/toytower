@@ -74,6 +74,10 @@ radius = 2.67329
 height = 7.1978
 sides = 32
 
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.82784, 2.3244, -1.74813)
+size = Vector3(13.8344, 3.53844, 1)
+
 [node name="spawner" type="Node" parent="."]
 script = ExtResource("1_nln22")
 scnEnemy = ExtResource("2_u5goc")

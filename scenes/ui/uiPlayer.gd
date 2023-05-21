@@ -11,6 +11,7 @@ func _physics_process(delta):
 	# update display values
 	
 	%lblWave.text = str(GlobalState.round)
+	%lblEnemiesLeft.text = "%d/%d" % [GlobalState.killedEnemies, GlobalState.enemiesToSpawn]
 	%progressCristalHealth.value = floor((float(GlobalState.cristalHealth) / GlobalState.cristalMaxHealth) * 100)
 	
 	# DELETEME: input()

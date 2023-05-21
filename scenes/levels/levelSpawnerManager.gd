@@ -3,8 +3,6 @@ extends Node
 @export var spawnTimeout: float = 3
 
 var difficulty = 0
-var round = 1
-var enemiesToSpawn = 1
 var enemiesSpawned = 1
 
 # health
@@ -56,32 +54,33 @@ var currentEnemies = enemiesPerRound[difficulty]
 
 func _ready():
 	randomize()
+	
+	# events
 	$timerSpawn.connect("timeout", _on_spawn_timeout)
 	$timerSpawn.start(spawnTimeout)
+	GlobalState.connect("sig_round_advanced", setup_round)
 	
 	# setup round 1
-	setup_round(round)
+	setup_round()
 	
-func setup_round(newRound: int):
+func setup_round():
 	
-	round = newRound
-	
-	if round > 6:
+	if GlobalState.round >= 6:
 		difficulty = 2
-	elif round > 3:
+	elif GlobalState.round >= 3:
 		difficulty = 1
 	else:
-		difficulty = 2
+		difficulty = 0
 	
 	currentEnemies = enemiesPerRound[difficulty]
 	enemiesSpawned = 0
-	enemiesToSpawn = 15 + round * 5
+	GlobalState.setEnemiesToSpawn(1 + GlobalState.round * 5)
 
 func _on_spawn_timeout():
 	
 	# enemies are all killed
 	
-	if (enemiesSpawned < enemiesToSpawn):
+	if (enemiesSpawned < GlobalState.enemiesToSpawn):
 		
 		# select a random spawn
 		

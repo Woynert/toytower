@@ -36,6 +36,11 @@ func setup(
 
 func _physics_process(delta):
 	
+	if GlobalState.game_state != GlobalState.GAME_STATE.PLAYING:
+		return
+	
+	# move along path
+	
 	self.progress += speed
 	
 	if (self.progress_ratio > 1 && !arrived):
@@ -68,5 +73,7 @@ func hurt(damage: int):
 		die()
 		
 func die():
+	
+	GlobalState.addEnemyKill()
 	queue_free()
 

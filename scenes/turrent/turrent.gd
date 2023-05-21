@@ -48,6 +48,9 @@ func enable():
 
 func shoot():
 	
+	if GlobalState.game_state != GlobalState.GAME_STATE.PLAYING:
+		return
+	
 	if target == null:
 		return
 	

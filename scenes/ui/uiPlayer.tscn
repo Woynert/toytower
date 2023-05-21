@@ -54,6 +54,12 @@ text = "10"
 horizontal_alignment = 1
 vertical_alignment = 2
 
+[node name="lblEnemiesLeft" type="Label" parent="waveInfo/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "16/37"
+horizontal_alignment = 1
+
 [node name="playerInfo" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 3
