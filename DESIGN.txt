@@ -1,0 +1,42 @@
+# project structure
+
+services
+	globalState
+	audioPlayer
+	writeLoad
+scenes
+	player
+		player
+		controllable-comp
+		turrent-comp
+		player hud
+	enemies
+		enemie
+		path-following-comp
+	turrent
+		turrent
+	common
+		attack-comp
+		billiboard-comp
+	map
+		cristal
+		shop
+	levels
+		main screen
+		level 1
+		level 2
+	ui
+		main menu
+		scores menu
+		pause menu
+		store menu
+		builder menu
+		win menu
+		loose memu
+		
+# collision layers
+
+- 1 general
+- 2 solid
+- 3 enemies
+
