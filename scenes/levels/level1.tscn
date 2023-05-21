@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbd3fjp0ja4qb"]
+[gd_scene load_steps=12 format=3 uid="uid://dbd3fjp0ja4qb"]
 
 [ext_resource type="PackedScene" uid="uid://7gv6q50fuutj" path="res://scenes/player/player.tscn" id="1_578s2"]
 [ext_resource type="Script" path="res://scenes/levels/levelSpawnerManager.gd" id="1_nln22"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://danmvmwlt236" path="res://scenes/map/cristal.tscn" id="4_jcoe5"]
 [ext_resource type="PackedScene" uid="uid://b37v1ira76rl1" path="res://scenes/ui/uiLooseWin.tscn" id="5_8avs2"]
 [ext_resource type="PackedScene" uid="uid://d0uv22ho6x4wr" path="res://scenes/turrent/turrent.tscn" id="5_jq7r7"]
+[ext_resource type="PackedScene" uid="uid://c6n7gtrebkw2f" path="res://scenes/common/gizmoBilliboard.tscn" id="8_ixtqv"]
 
 [sub_resource type="Curve3D" id="Curve3D_td5o5"]
 _data = {
@@ -21,6 +22,10 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
+
+[sub_resource type="Environment" id="Environment_gs2ph"]
+background_color = Color(0.666667, 0.956863, 1, 1)
+background_energy_multiplier = 0.18
 
 [node name="level1" type="Node3D"]
 script = ExtResource("1_x43ip")
@@ -98,10 +103,18 @@ curve = SubResource("Curve3D_nxn5u")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0955, 0.999999, 4.25109)
 
 [node name="Player" parent="." instance=ExtResource("1_578s2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.748474, 0)
 
 [node name="turrent" parent="." instance=ExtResource("5_jq7r7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.02946, 0.508225, 3.48057)
+
+[node name="turrent2" parent="." instance=ExtResource("5_jq7r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.68833, 0.508225, 0.703677)
+turrentIndex = 1
+
+[node name="turrent3" parent="." instance=ExtResource("5_jq7r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6789, 0.508225, -0.198113)
+turrentIndex = 2
 
 [node name="cristal" type="Node3D" parent="."]
 
@@ -124,3 +137,9 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 win = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gs2ph")
+
+[node name="gizmoBilliboard" parent="." instance=ExtResource("8_ixtqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.597048, 1.95598, -2.59811)
