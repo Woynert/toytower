@@ -1,16 +1,43 @@
 extends Node3D
 
-var target: Node3D
-@export var reachDistance: float = 10
+const SHOOT_TIMES = [1, 1.2, 1.1]
 
+var target: Node3D
 var ray: RayCast3D
 var visual: TurrentVisual
+
+@export var turrentIndex: int = 0
+@export var reachDistance: float = 10
+var shootTime: float = SHOOT_TIMES[0]
 
 func _ready():
 	ray = $RayCast3D
 	visual = $visual
-	$timerRetarget.connect("timeout", retarget)
+	
 	($Area3D/CollisionShape3D.shape as SphereShape3D).radius = reachDistance
+	
+	$timerRetarget.connect("timeout", retarget)
+	$timerShoot.connect("timeout", shoot)
+	
+	setup(turrentIndex)
+	enable()
+
+func setup(index: int):
+	turrentIndex = index
+	visual.setup(index)
+	
+func enable():
+	# start shoot alarm
+	
+	shootTime = SHOOT_TIMES[turrentIndex]
+	$timerShoot.start(shootTime)
+
+func shoot():
+	
+	if target == null:
+		return
+		
+	visual.playAnimation("turrent%d-attack" % (turrentIndex + 1))
 
 func retarget():
 	
