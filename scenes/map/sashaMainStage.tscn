@@ -59,7 +59,7 @@ bones/1/rotation = Quaternion(0.0135561, -0.0200722, 0.990859, -0.132708)
 bones/2/rotation = Quaternion(-0.248808, -0.135711, 0.00786341, 0.958966)
 bones/3/position = Vector3(0.136496, 1.57719, -0.103146)
 bones/3/rotation = Quaternion(0.132454, 0.631007, 0.762825, 0.0488309)
-bones/4/rotation = Quaternion(0.216061, -1.20907e-05, -1.05144e-05, 0.97638)
+bones/4/rotation = Quaternion(0.214706, -1.21053e-05, -1.0498e-05, 0.976679)
 bones/5/rotation = Quaternion(-0.114517, -0.0666607, 0.971876, -0.194677)
 bones/6/rotation = Quaternion(0.223329, -0.171838, -0.0315205, 0.958959)
 bones/9/rotation = Quaternion(0.0386866, -0.0866079, -0.6417, 0.761067)
@@ -85,23 +85,23 @@ bones/29/rotation = Quaternion(-0.225768, 0.298919, -0.0114328, 0.927117)
 bones/30/position = Vector3(0.0165655, 1.504, -0.0446539)
 
 [node name="Roundcube" parent="sasha/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, 1.2888e-05, -2.91859e-05, -2.02083e-05, 0.963744, -0.266828, 2.46889e-05, 0.266828, 0.963744, 3.2517e-05, 2.99252, 0.147758)
+transform = Transform3D(1, 1.2888e-05, -2.91859e-05, -2.01398e-05, 0.964481, -0.264154, 2.47448e-05, 0.264154, 0.964481, 3.2517e-05, 2.99382, 0.141695)
 bone_idx = 14
 
 [node name="Cube001" parent="sasha/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.847918, 0.392146, 0.35673, -0.318149, 0.914681, -0.249277, -0.424048, 0.0978735, 0.900336, 0.814709, 2.87006, -0.362694)
+transform = Transform3D(0.847918, 0.392146, 0.35673, -0.319324, 0.914949, -0.246779, -0.423164, 0.0953356, 0.901024, 0.814709, 2.86995, -0.368415)
 bone_idx = 15
 
 [node name="Roundcube001" parent="sasha/Armature/Skeleton3D" index="2"]
-transform = Transform3D(1, 1.2888e-05, -2.91859e-05, -2.02083e-05, 0.963744, -0.266828, 2.46889e-05, 0.266828, 0.963744, 3.2517e-05, 2.99252, 0.147758)
+transform = Transform3D(1, 1.2888e-05, -2.91859e-05, -2.01398e-05, 0.964481, -0.264154, 2.47448e-05, 0.264154, 0.964481, 3.2517e-05, 2.99382, 0.141695)
 bone_idx = 16
 
 [node name="Cylinder008" parent="sasha/Armature/Skeleton3D" index="3"]
-transform = Transform3D(-0.600196, -0.562642, 0.568507, 0.795698, -0.492366, 0.352762, 0.0814347, 0.664086, 0.743207, -1.18768, -1.18861, -0.629302)
+transform = Transform3D(-0.600196, -0.562642, 0.568507, 0.795921, -0.490522, 0.354822, 0.079227, 0.665449, 0.742226, -1.18768, -1.18945, -0.623763)
 bone_idx = 24
 
 [node name="Cylinder009" parent="sasha/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.600196, -0.562642, 0.568507, 0.795698, -0.492366, 0.352762, 0.0814347, 0.664086, 0.743207, -2.217, -2.08936, 0.585602)
+transform = Transform3D(-0.600196, -0.562642, 0.568507, 0.795921, -0.490522, 0.354822, 0.079227, 0.665449, 0.742226, -2.217, -2.08683, 0.593636)
 bone_idx = 25
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

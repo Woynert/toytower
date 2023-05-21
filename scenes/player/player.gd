@@ -33,7 +33,7 @@ func _physics_process(delta):
 			velocity.y = JUMP_VELOCITY
 			
 		# shoot
-		if Input.is_action_just_pressed("gm_primary_action"):
+		if Input.is_action_pressed("gm_primary_action"):
 			shoot()
 			
 		# get the input direction and handle the movement / deceleration.
@@ -45,6 +45,10 @@ func _physics_process(delta):
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
+	
+	else:
+		velocity.x = 0
+		velocity.z = 0
 
 	move_and_slide()
 
@@ -61,8 +65,14 @@ func _input(event):
 		mouseRelativeY = clamp(event.relative.y, -50, 10)
 
 func shoot():
+	
+	# play animation
+	(%visualFPS as PlayerVisualFPS).playAnimation(PlayerVisualFPS.ANI.ATTACK)
+	
+	"""
 	if not gunRay.is_colliding():
 		return
 	
 	print(gunRay.get_collision_point())
 	print(gunRay.get_collision_point()+gunRay.get_collision_normal())
+	"""
