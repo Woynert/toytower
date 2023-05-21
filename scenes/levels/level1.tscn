@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbd3fjp0ja4qb"]
+[gd_scene load_steps=10 format=3 uid="uid://dbd3fjp0ja4qb"]
 
 [ext_resource type="PackedScene" uid="uid://7gv6q50fuutj" path="res://scenes/player/player.tscn" id="1_578s2"]
 [ext_resource type="Script" path="res://scenes/levels/levelSpawnerManager.gd" id="1_nln22"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bfqty2lqku5lg" path="res://scenes/enemy/enemy.tscn" id="2_u5goc"]
 [ext_resource type="PackedScene" uid="uid://danmvmwlt236" path="res://scenes/map/cristal.tscn" id="4_jcoe5"]
 [ext_resource type="PackedScene" uid="uid://b37v1ira76rl1" path="res://scenes/ui/uiLooseWin.tscn" id="5_8avs2"]
+[ext_resource type="PackedScene" uid="uid://d0uv22ho6x4wr" path="res://scenes/turrent/turrent.tscn" id="5_jq7r7"]
 
 [sub_resource type="Curve3D" id="Curve3D_td5o5"]
 _data = {
@@ -24,8 +25,18 @@ point_count = 4
 [node name="level1" type="Node3D"]
 script = ExtResource("1_x43ip")
 
+[node name="env" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
+transform = Transform3D(0.933013, 0.258819, -0.25, 0.258819, 9.97209e-08, 0.965926, 0.25, -0.965926, -0.0669872, 0, 11, 0)
+shadow_enabled = true
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="env"]
+transform = Transform3D(0.938236, -0.226143, 0.261862, -0.0170327, 0.725732, 0.687767, -0.345575, -0.649748, 0.677056, 5.66073, 11, 7.92872)
+
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
+collision_layer = 3
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
@@ -89,12 +100,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0955, 0.999999, 4.25109)
 [node name="Player" parent="." instance=ExtResource("1_578s2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.933013, 0.258819, -0.25, 0.258819, 1.11291e-07, 0.965926, 0.25, -0.965926, -0.0669872, 0, 11, 0)
-shadow_enabled = true
-
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.938236, -0.226143, 0.261862, -0.0170327, 0.725732, 0.687766, -0.345575, -0.649748, 0.677057, 5.66073, 11, 7.92872)
+[node name="turrent" parent="." instance=ExtResource("5_jq7r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.02946, 0.508225, 3.48057)
 
 [node name="cristal" type="Node3D" parent="."]
 

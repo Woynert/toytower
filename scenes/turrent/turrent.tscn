@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0uv22ho6x4wr"]
+
+[ext_resource type="Script" path="res://scenes/turrent/turrent.gd" id="1_hqkyu"]
+[ext_resource type="Script" path="res://scenes/turrent/turrentVisual.gd" id="1_xipwt"]
+[ext_resource type="PackedScene" uid="uid://bdsl2pmea5c1" path="res://assets/blender/turrent1.blend" id="2_ua7jh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_facyv"]
+radius = 18.261
+
+[node name="turrent" type="Node3D"]
+script = ExtResource("1_hqkyu")
+
+[node name="timerRetarget" type="Timer" parent="."]
+autostart = true
+
+[node name="visual" type="Node3D" parent="."]
+transform = Transform3D(0.32, 0, 5.59506e-08, 0, 0.32, 0, -5.59506e-08, 0, 0.32, 0, 0, 0)
+script = ExtResource("1_xipwt")
+
+[node name="turrent1" parent="visual" instance=ExtResource("2_ua7jh")]
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_facyv")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+target_position = Vector3(0, 0, 20)
+collision_mask = 2
+
+[editable path="visual/turrent1"]
