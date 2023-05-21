@@ -1,4 +1,10 @@
 extends Control
+class_name UIPlayer
+
+signal sig_on_turrent_select(index: int)
+
+func _ready():
+	toggleTurrentSelect(false)
 
 func _physics_process(delta):
 	
@@ -6,3 +12,21 @@ func _physics_process(delta):
 	
 	%lblWave.text = str(GlobalState.round)
 	%progressCristalHealth.value = floor((float(GlobalState.cristalHealth) / GlobalState.cristalMaxHealth) * 100)
+	
+	input()
+
+func toggleTurrentSelect(toggle: bool):
+	%turrentSelection.visible = toggle
+	
+func input():
+	
+	if Input.is_action_just_pressed("gm_pick1"):
+		sig_on_turrent_select.emit(1)
+	if Input.is_action_just_pressed("gm_pick2"):
+		sig_on_turrent_select.emit(2)
+	if Input.is_action_just_pressed("gm_pick3"):
+		sig_on_turrent_select.emit(3)
+	
+	
+	
+
