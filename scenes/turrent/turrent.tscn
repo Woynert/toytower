@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d0uv22ho6x4wr"]
+[gd_scene load_steps=23 format=3 uid="uid://d0uv22ho6x4wr"]
 
 [ext_resource type="Script" path="res://scenes/turrent/turrent.gd" id="1_hqkyu"]
 [ext_resource type="Script" path="res://scenes/turrent/turrentVisual.gd" id="1_xipwt"]
@@ -79,6 +79,9 @@ node_connections = [&"output", 0, &"StateMachine"]
 [sub_resource type="SphereShape3D" id="SphereShape3D_facyv"]
 radius = 18.261
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wo8og"]
+size = Vector3(0.5, 1, 0.5)
+
 [node name="turrent" type="Node3D"]
 script = ExtResource("1_hqkyu")
 
@@ -152,6 +155,11 @@ active = true
 parameters/StateMachine/playback = SubResource("AnimationNodeStateMachinePlayback_8u6is")
 parameters/StateMachine/turrent1-attack/TimeScale/scale = 2.0
 
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+target_position = Vector3(0, 0, 20)
+collision_mask = 2
+
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 4
@@ -159,9 +167,10 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_facyv")
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-target_position = Vector3(0, 0, 20)
-collision_mask = 2
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_wo8og")
 
 [editable path="visual/turrent1"]
