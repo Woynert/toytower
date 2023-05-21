@@ -35,7 +35,8 @@ func _physics_process(delta):
 		STATE.ON_TURRENT_MENU:
 			
 			# close turrent menu
-			if Input.is_action_just_pressed("gm_open_turrent_menu"):
+			if (Input.is_action_just_pressed("gm_open_turrent_menu") ||
+				Input.is_action_just_pressed("gm_escape")):
 				ui.toggleTurrentSelect(false)
 				setState(STATE.NONE)
 				
@@ -65,9 +66,17 @@ func _physics_process(delta):
 			
 			createdTurrent.rotateBody(playerRotatingHead.rotation.y + PI)
 			
-			# cancel placement
+			# cancel placement -> delete turrent
 			if Input.is_action_just_pressed("gm_escape"):
-				print("cancel")
+				
+				playerAimPoint.getNodePoint().remove_child(createdTurrent)
+				createdTurrent.queue_free()
+				
+				# reset state
+				setState(STATE.NONE)
+				createdTurrent = null
+				selectedTurrentIndex = -1
+				return
 				
 			# check colliding body
 			if !createdTurrent.isBodyFree():
