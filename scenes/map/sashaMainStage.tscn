@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://brsdovr5w0fe5"]
+[gd_scene load_steps=16 format=3 uid="uid://brsdovr5w0fe5"]
 
 [ext_resource type="Script" path="res://scenes/map/sashaMainStage.gd" id="1_j8why"]
 [ext_resource type="PackedScene" uid="uid://mrp6ae8ctlod" path="res://assets/blender/sasha.blend" id="2_xw2o7"]
@@ -25,17 +25,29 @@ xfade_time = 0.5
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0rq62"]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mc06l"]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fojrw"]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g8hbc"]
+xfade_time = 0.5
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5sd81"]
 states/End/position = Vector2(773, 112)
-states/Start/position = Vector2(386, 46)
+states/Start/position = Vector2(407, -12)
 states/posing0/node = SubResource("AnimationNodeAnimation_imkea")
 states/posing0/position = Vector2(629, 107)
 states/posing1/node = SubResource("AnimationNodeAnimation_tu605")
-states/posing1/position = Vector2(386, 112)
+states/posing1/position = Vector2(386, 71)
 states/posing2/node = SubResource("AnimationNodeAnimation_4cx1u")
-states/posing2/position = Vector2(386, 165)
-transitions = ["Start", "posing0", SubResource("AnimationNodeStateMachineTransition_qcrj7"), "posing1", "posing0", SubResource("AnimationNodeStateMachineTransition_4y7hc"), "posing2", "posing0", SubResource("AnimationNodeStateMachineTransition_plx0l")]
-graph_offset = Vector2(57, -22)
+states/posing2/position = Vector2(386, 196)
+transitions = ["Start", "posing0", SubResource("AnimationNodeStateMachineTransition_qcrj7"), "posing1", "posing0", SubResource("AnimationNodeStateMachineTransition_4y7hc"), "posing2", "posing0", SubResource("AnimationNodeStateMachineTransition_plx0l"), "posing1", "posing2", SubResource("AnimationNodeStateMachineTransition_0rq62"), "posing2", "posing1", SubResource("AnimationNodeStateMachineTransition_mc06l"), "posing0", "posing1", SubResource("AnimationNodeStateMachineTransition_fojrw"), "posing0", "posing2", SubResource("AnimationNodeStateMachineTransition_g8hbc")]
+graph_offset = Vector2(168, -26)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_g7vnd"]
 graph_offset = Vector2(-288.491, -104.231)
@@ -59,7 +71,7 @@ bones/1/rotation = Quaternion(0.0135561, -0.0200722, 0.990859, -0.132708)
 bones/2/rotation = Quaternion(-0.248808, -0.135711, 0.00786341, 0.958966)
 bones/3/position = Vector3(0.136496, 1.57719, -0.103146)
 bones/3/rotation = Quaternion(0.132454, 0.631007, 0.762825, 0.0488309)
-bones/4/rotation = Quaternion(0.214706, -1.21053e-05, -1.0498e-05, 0.976679)
+bones/4/rotation = Quaternion(0.184575, -1.2424e-05, -1.0128e-05, 0.982818)
 bones/5/rotation = Quaternion(-0.114517, -0.0666607, 0.971876, -0.194677)
 bones/6/rotation = Quaternion(0.223329, -0.171838, -0.0315205, 0.958959)
 bones/9/rotation = Quaternion(0.0386866, -0.0866079, -0.6417, 0.761067)
@@ -85,23 +97,23 @@ bones/29/rotation = Quaternion(-0.225768, 0.298919, -0.0114328, 0.927117)
 bones/30/position = Vector3(0.0165655, 1.504, -0.0446539)
 
 [node name="Roundcube" parent="sasha/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, 1.2888e-05, -2.91859e-05, -2.01398e-05, 0.964481, -0.264154, 2.47448e-05, 0.264154, 0.964481, 3.2517e-05, 2.99382, 0.141695)
+transform = Transform3D(1, 1.2888e-05, -2.91859e-05, -1.85808e-05, 0.978893, -0.204373, 2.59359e-05, 0.204373, 0.978893, 3.2517e-05, 3.01827, 0.00645177)
 bone_idx = 14
 
 [node name="Cube001" parent="sasha/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.847918, 0.392146, 0.35673, -0.319324, 0.914949, -0.246779, -0.423164, 0.0953356, 0.901024, 0.814709, 2.86995, -0.368415)
+transform = Transform3D(0.847918, 0.392146, 0.35673, -0.34473, 0.919079, -0.190932, -0.402737, 0.0389189, 0.914488, 0.814709, 2.86328, -0.49508)
 bone_idx = 15
 
 [node name="Roundcube001" parent="sasha/Armature/Skeleton3D" index="2"]
-transform = Transform3D(1, 1.2888e-05, -2.91859e-05, -2.01398e-05, 0.964481, -0.264154, 2.47448e-05, 0.264154, 0.964481, 3.2517e-05, 2.99382, 0.141695)
+transform = Transform3D(1, 1.2888e-05, -2.91859e-05, -1.85808e-05, 0.978893, -0.204373, 2.59359e-05, 0.204373, 0.978893, 3.2517e-05, 3.01827, 0.00645177)
 bone_idx = 16
 
 [node name="Cylinder008" parent="sasha/Armature/Skeleton3D" index="3"]
-transform = Transform3D(-0.600196, -0.562642, 0.568507, 0.795921, -0.490522, 0.354822, 0.079227, 0.665449, 0.742226, -1.18768, -1.18945, -0.623763)
+transform = Transform3D(-0.600196, -0.562642, 0.568507, 0.799285, -0.448693, 0.399771, 0.0301567, 0.69434, 0.719013, -1.18768, -1.20413, -0.500439)
 bone_idx = 24
 
 [node name="Cylinder009" parent="sasha/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.600196, -0.562642, 0.568507, 0.795921, -0.490522, 0.354822, 0.079227, 0.665449, 0.742226, -2.217, -2.08683, 0.593636)
+transform = Transform3D(-0.600196, -0.562642, 0.568507, 0.799285, -0.448693, 0.399771, 0.0301567, 0.69434, 0.719013, -2.217, -2.02499, 0.769815)
 bone_idx = 25
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -111,7 +123,7 @@ active = true
 parameters/StateMachine/playback = SubResource("AnimationNodeStateMachinePlayback_itbrw")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 6.0
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
