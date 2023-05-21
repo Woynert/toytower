@@ -1,6 +1,7 @@
 extends Node3D
 
-@export var ui: UIPlayer
+@export var uiPlayer: UIPlayer
+@export var uiPause: UIPauseMenu
 @export var scnTurrent: PackedScene
 @export var playerAimPoint: PlayerAimPoint
 @export var playerRotatingHead: Node3D
@@ -8,6 +9,7 @@ extends Node3D
 enum STATE{
 	NONE,
 	ON_TURRENT_MENU,
+	ON_PAUSE_MENU,
 	PLACING_TURRENT,
 	MOVING_TURRENT,
 }
@@ -22,6 +24,9 @@ var state: STATE = STATE.NONE
 func setState(state: STATE):
 	self.state = state
 	
+func _ready():
+	uiPause.connect("sig_close", closePauseMenu)
+	
 func _physics_process(delta):
 	
 	match state:
@@ -29,7 +34,7 @@ func _physics_process(delta):
 			
 			# open turrent menu
 			if Input.is_action_just_pressed("gm_open_turrent_menu"):
-				ui.toggleTurrentSelect(true)
+				uiPlayer.toggleTurrentSelect(true)
 				setState(STATE.ON_TURRENT_MENU)
 				
 		STATE.ON_TURRENT_MENU:
@@ -37,23 +42,23 @@ func _physics_process(delta):
 			# close turrent menu
 			if (Input.is_action_just_pressed("gm_open_turrent_menu") ||
 				Input.is_action_just_pressed("gm_escape")):
-				ui.toggleTurrentSelect(false)
+				uiPlayer.toggleTurrentSelect(false)
 				setState(STATE.NONE)
 				
 			elif Input.is_action_just_pressed("gm_pick1"):
-				ui.toggleTurrentSelect(false)
+				uiPlayer.toggleTurrentSelect(false)
 				selectedTurrentIndex = 0
 				setState(STATE.PLACING_TURRENT)
 				createTurrent()
 				
 			elif Input.is_action_just_pressed("gm_pick2"):
-				ui.toggleTurrentSelect(false)
+				uiPlayer.toggleTurrentSelect(false)
 				selectedTurrentIndex = 1
 				setState(STATE.PLACING_TURRENT)
 				createTurrent()
 				
 			elif Input.is_action_just_pressed("gm_pick3"):
-				ui.toggleTurrentSelect(false)
+				uiPlayer.toggleTurrentSelect(false)
 				selectedTurrentIndex = 2
 				setState(STATE.PLACING_TURRENT)
 				createTurrent()
@@ -99,7 +104,12 @@ func _physics_process(delta):
 				createdTurrent = null
 				selectedTurrentIndex = -1
 				
-				
+		STATE.ON_PAUSE_MENU:
+			
+			# close escape menu
+			if Input.is_action_just_pressed("gm_escape"):
+				uiPause.togglePauseMenu(false)
+				setState(STATE.NONE)
 
 func createTurrent():
 	assert(scnTurrent is PackedScene)
@@ -110,3 +120,6 @@ func createTurrent():
 	
 	playerAimPoint.getNodePoint().add_child(turrent)
 	turrent.setup(selectedTurrentIndex)
+	
+func closePauseMenu():
+	setState(STATE.NONE)

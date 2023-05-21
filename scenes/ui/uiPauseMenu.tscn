@@ -1,0 +1,92 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt2vcwe41g5x2"]
+
+[ext_resource type="Script" path="res://scenes/ui/uiPauseMenu.gd" id="1_607eh"]
+
+[node name="uiPauseMenu" type="Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_607eh")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="escapeMenu" type="PanelContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/escapeMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/escapeMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="lblTitle" type="Label" parent="CenterContainer/escapeMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 33
+text = "Toy Tower"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="CenterContainer/escapeMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="btnResume" type="Button" parent="CenterContainer/escapeMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume
+"
+
+[node name="btnLeave" type="Button" parent="CenterContainer/escapeMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Leave"
+
+[node name="confirmationDialog" type="PanelContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/confirmationDialog"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/confirmationDialog/MarginContainer"]
+layout_mode = 2
+
+[node name="lblInfo" type="Label" parent="CenterContainer/confirmationDialog/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Are you sure you want to leave?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="CenterContainer/confirmationDialog/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="btnYes" type="Button" parent="CenterContainer/confirmationDialog/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Yes"
+
+[node name="btnReturn" type="Button" parent="CenterContainer/confirmationDialog/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Return"
