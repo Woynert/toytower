@@ -42,8 +42,8 @@ light_energy = 1.899
 shadow_enabled = true
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="env"]
-transform = Transform3D(0.938236, -0.226143, 0.261862, -0.0170327, 0.725732, 0.687767, -0.345575, -0.649748, 0.677056, 5.66073, 11, 7.92872)
-visible = false
+transform = Transform3D(-0.809565, -0.413697, 0.416484, 0.048267, 0.660165, 0.749568, -0.585042, 0.626927, -0.514479, 5.66073, 11, 7.92872)
+light_energy = 0.208
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
 environment = ExtResource("2_ksckd")
@@ -53,6 +53,7 @@ transform = Transform3D(0.8, 0, 0, 0, 0.7, 0, 0, 0, 0.8, 0, 0, 0)
 script = ExtResource("3_7k1v6")
 
 [node name="level1" parent="visual" instance=ExtResource("2_vcu23")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="spawner" type="Node" parent="."]
 script = ExtResource("1_nln22")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=21 format=3 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_jsnv8"]
 [ext_resource type="PackedScene" uid="uid://ccl7bh6jui1r0" path="res://scenes/ui/uiPlayer.tscn" id="2_2ndfv"]
@@ -56,8 +56,6 @@ nodes/StateMachine/position = Vector2(40, 120)
 node_connections = [&"output", 0, &"StateMachine"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_lsfcn"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4yfoe"]
 
 [node name="playerRoot" type="Node3D"]
 
@@ -149,69 +147,8 @@ transform = Transform3D(-0.3, 0, -2.62268e-08, 0, 0.3, 0, 2.62268e-08, 0, -0.3, 
 
 [node name="sasha" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model" instance=ExtResource("4_gj22y")]
 
-[node name="Skeleton3D" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature" index="0"]
-bones/0/position = Vector3(0, 0, -5.57347)
-bones/0/rotation = Quaternion(-2.98023e-08, 1.19209e-07, 3.19734e-36, 1)
-bones/1/rotation = Quaternion(4.59384e-06, 1.1019e-13, 1, -1.09823e-12)
-bones/1/scale = Vector3(0, 0, 0)
-bones/2/position = Vector3(2.9999, -5.1198, -0.333329)
-bones/2/rotation = Quaternion(-1.07685e-07, -1.66809e-07, -0.00289971, 0.999996)
-bones/2/scale = Vector3(0, 0, 0)
-bones/3/position = Vector3(3.38094, 41.3069, 1.95943)
-bones/3/rotation = Quaternion(-0.00209445, 0.723468, 0.690352, -0.00200532)
-bones/3/scale = Vector3(0, 0, 0)
-bones/5/position = Vector3(2.41712, -1.23041, 5.35433)
-bones/5/rotation = Quaternion(0.00250564, -0.0124822, 0.979262, -0.202198)
-bones/9/rotation = Quaternion(0.0341114, -0.00701354, 0.0476301, 0.998258)
-bones/10/rotation = Quaternion(-0.00526581, 0.000319411, -0.071152, 0.997452)
-bones/12/rotation = Quaternion(0.0717495, -0.0192873, 0.0209818, 0.997016)
-bones/13/scale = Vector3(0, 0, 0)
-bones/17/position = Vector3(-0.81304, 0.0676853, 5.54863)
-bones/17/rotation = Quaternion(-0.0246597, 0.596684, 0.784173, 0.168621)
-bones/18/rotation = Quaternion(0.0678272, 0.0365491, 0.0734546, 0.994318)
-bones/19/rotation = Quaternion(0.0137811, 0.314572, -0.0190299, 0.948943)
-bones/20/rotation = Quaternion(-0.0143218, 0.0118232, 0.117951, 0.992846)
-bones/21/rotation = Quaternion(-0.0219319, 0.0321548, 0.339379, 0.939844)
-bones/22/rotation = Quaternion(-0.0920683, 0.0559346, 0.600511, 0.792326)
-bones/23/position = Vector3(-0.222641, 0.525473, -0.0198632)
-bones/26/position = Vector3(-0.107581, 0.176063, 0.215441)
-bones/26/rotation = Quaternion(0.400812, -0.338064, 0.307639, 0.793991)
-bones/27/rotation = Quaternion(-0.0364471, -0.221437, 0.418848, 0.879888)
-bones/28/scale = Vector3(0, 0, 0)
-bones/29/position = Vector3(-2.9999, -5.1198, -0.333321)
-bones/29/rotation = Quaternion(-1.07685e-07, 1.66809e-07, 0.00289971, 0.999996)
-bones/29/scale = Vector3(0, 0, 0)
-bones/30/position = Vector3(-3.38094, 41.3069, 1.95943)
-bones/30/scale = Vector3(0, 0, 0)
-
-[node name="Roundcube" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -2.01714e-14, 2.83888, -5.57347)
-bone_idx = 14
-
-[node name="Cube001" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -2.01714e-14, 2.83888, -5.57347)
-bone_idx = 15
-
-[node name="Roundcube001" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -2.01714e-14, 2.83888, -5.57347)
-bone_idx = 16
-
-[node name="Cylinder008" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="3"]
-transform = Transform3D(-0.128889, -0.471686, 0.872296, -0.120963, 0.880543, 0.45827, -0.984254, -0.0464504, -0.170547, -1.314, 1.03324, 3.10134)
-bone_idx = 24
-
-[node name="Cylinder009" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.128889, -0.471686, 0.872296, -0.120963, 0.880543, 0.45827, -0.984254, -0.0464504, -0.170547, -2.17692, 2.64414, 3.01637)
-bone_idx = 25
-
-[node name="Cylinder009" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha/Armature/Skeleton3D/Cylinder009" index="0"]
-layers = 3
-surface_material_override/0 = SubResource("StandardMaterial3D_4yfoe")
-
 [node name="uiPlayer" parent="player/ui" instance=ExtResource("2_2ndfv")]
 layout_mode = 1
 
 [node name="uiPauseMenu" parent="player/ui" instance=ExtResource("8_uobrf")]
 layout_mode = 1
-
-[editable path="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model/sasha"]

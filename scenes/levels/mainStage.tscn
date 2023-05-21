@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmy2o32g62fip"]
+[gd_scene load_steps=8 format=3 uid="uid://bmy2o32g62fip"]
 
 [ext_resource type="Environment" uid="uid://by0f1x7o38mmj" path="res://mainEnv.tres" id="1_0ls35"]
 [ext_resource type="PackedScene" uid="uid://brsdovr5w0fe5" path="res://scenes/map/sashaMainStage.tscn" id="1_l63jw"]
 [ext_resource type="PackedScene" uid="uid://ofa5hq6n8tcb" path="res://scenes/ui/uiMainMenu.tscn" id="2_1kx0r"]
 [ext_resource type="Script" path="res://scenes/levels/uiDriver.gd" id="2_vlxoi"]
 [ext_resource type="PackedScene" uid="uid://t0occimcfq4g" path="res://scenes/ui/uiScores.tscn" id="3_dbccq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nv3nv"]
+albedo_color = Color(0.580392, 0.6, 0.666667, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q4lla"]
+size = Vector3(30, 1, 8)
 
 [node name="mainStage" type="Node3D"]
 
@@ -93,3 +99,8 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.95117, -0.754815, 0)
+material_override = SubResource("StandardMaterial3D_nv3nv")
+mesh = SubResource("BoxMesh_q4lla")

@@ -81,7 +81,7 @@ func set_game_state(state: GAME_STATE):
 
 func reset_game():
 	
-	money = 110
+	money = 350
 	round = 1
 	killedEnemies = 0
 	enemiesToSpawn = 15 + round * 5
