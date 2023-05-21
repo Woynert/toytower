@@ -1,0 +1,111 @@
+[gd_scene load_steps=13 format=3 uid="uid://p4fqbwfw2fch"]
+
+[ext_resource type="PackedScene" uid="uid://7gv6q50fuutj" path="res://scenes/player/player.tscn" id="1_578s2"]
+[ext_resource type="Script" path="res://scenes/levels/levelSpawnerManager.gd" id="1_nln22"]
+[ext_resource type="Script" path="res://scenes/levels/levelDriver.gd" id="1_x43ip"]
+[ext_resource type="Environment" uid="uid://by0f1x7o38mmj" path="res://mainEnv.tres" id="2_ksckd"]
+[ext_resource type="PackedScene" uid="uid://bfqty2lqku5lg" path="res://scenes/enemy/enemy.tscn" id="2_u5goc"]
+[ext_resource type="PackedScene" uid="uid://3o7g2fae06j8" path="res://assets/blender/level1.blend" id="2_vcu23"]
+[ext_resource type="Script" path="res://scenes/levels/recursivelySetLayer.gd" id="3_7k1v6"]
+[ext_resource type="PackedScene" uid="uid://danmvmwlt236" path="res://scenes/map/cristal.tscn" id="4_jcoe5"]
+[ext_resource type="PackedScene" uid="uid://b37v1ira76rl1" path="res://scenes/ui/uiLooseWin.tscn" id="5_8avs2"]
+
+[sub_resource type="Curve3D" id="Curve3D_wmci8"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -23.3142, 1.00004, 0.161921, 0, 0, 0, 0, 0, 0, 30.5124, 1.00004, 0.0739167),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_dmnv2"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -23.3142, 1.00004, 0.161921, 0, 0, 0, 0, 0, 0, 31.0652, 0.99999, 1.01505, 0, 0, 0, 0, 0, 0, 30.84, 0.994594, 7.68456, 0, 0, 0, 0, 0, 0, 31.1779, 7.98813, 19.7662, 0, 0, 0, 0, 0, 0, 32.1777, 7.99673, 26.5489),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Curve3D" id="Curve3D_fif1n"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -23.3142, 1.00004, 0.161921, 0, 0, 0, 0, 0, 0, 29.4509, 0.999947, 0.417023, 0, 0, 0, 0, 0, 0, 31.2275, 0.995865, -7.72779, 0, 0, 0, 0, 0, 0, 31.4292, -5.99795, -19.7459, 0, 0, 0, 0, 0, 0, 32.0231, -5.98746, -25.7737),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="level1" type="Node3D"]
+script = ExtResource("1_x43ip")
+
+[node name="env" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
+transform = Transform3D(-0.0915901, -0.989811, 0.109019, 0.454222, 0.0558997, 0.889133, -0.886168, 0.130955, 0.444474, 0, 11, 0)
+light_energy = 1.899
+shadow_enabled = true
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="env"]
+transform = Transform3D(-0.809565, -0.413697, 0.416484, 0.048267, 0.660165, 0.749568, -0.585042, 0.626927, -0.514479, 5.66073, 11, 7.92872)
+light_energy = 0.208
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
+environment = ExtResource("2_ksckd")
+
+[node name="visual" type="Node3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.7, 0, 0, 0, 0.8, 0, 0, 0)
+script = ExtResource("3_7k1v6")
+
+[node name="level1" parent="visual" instance=ExtResource("2_vcu23")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="spawner" type="Node" parent="."]
+script = ExtResource("1_nln22")
+scnEnemy = ExtResource("2_u5goc")
+
+[node name="timerSpawn" type="Timer" parent="spawner"]
+wait_time = 3.0
+
+[node name="enemyPaths" type="Node3D" parent="spawner"]
+
+[node name="Path3D" type="Path3D" parent="spawner/enemyPaths"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41126, 0)
+curve = SubResource("Curve3D_wmci8")
+
+[node name="spawn" type="Marker3D" parent="spawner/enemyPaths/Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3933, 1, 0.0162711)
+
+[node name="Path3D2" type="Path3D" parent="spawner/enemyPaths"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.57445, -27.8454)
+curve = SubResource("Curve3D_dmnv2")
+
+[node name="spawn" type="Marker3D" parent="spawner/enemyPaths/Path3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3933, 1, 0.0162711)
+
+[node name="Path3D3" type="Path3D" parent="spawner/enemyPaths"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.41569, 27.8055)
+curve = SubResource("Curve3D_fif1n")
+
+[node name="spawn" type="Marker3D" parent="spawner/enemyPaths/Path3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3933, 1, 0.0162711)
+
+[node name="Player" parent="." instance=ExtResource("1_578s2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.1165, 2.93403, -2.29078)
+
+[node name="cristal" type="Node3D" parent="."]
+
+[node name="cristal" parent="cristal" instance=ExtResource("4_jcoe5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.3398, 1.3744, 0.172233)
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="uiLooseWinWin" parent="ui" instance=ExtResource("5_8avs2")]
+visible = false
+layout_mode = 1
+
+[node name="uiLooseWinLoose" parent="ui" instance=ExtResource("5_8avs2")]
+visible = false
+layout_mode = 1
+win = false

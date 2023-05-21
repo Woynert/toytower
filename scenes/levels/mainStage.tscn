@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmy2o32g62fip"]
+
+[ext_resource type="Environment" uid="uid://by0f1x7o38mmj" path="res://mainEnv.tres" id="1_0ls35"]
+[ext_resource type="PackedScene" uid="uid://brsdovr5w0fe5" path="res://scenes/map/sashaMainStage.tscn" id="1_l63jw"]
+[ext_resource type="PackedScene" uid="uid://ofa5hq6n8tcb" path="res://scenes/ui/uiMainMenu.tscn" id="2_1kx0r"]
+[ext_resource type="Script" path="res://scenes/levels/uiDriver.gd" id="2_vlxoi"]
+[ext_resource type="PackedScene" uid="uid://t0occimcfq4g" path="res://scenes/ui/uiScores.tscn" id="3_dbccq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nv3nv"]
+albedo_color = Color(0.580392, 0.6, 0.666667, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q4lla"]
+size = Vector3(30, 1, 8)
+
+[node name="mainStage" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_0ls35")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.625, 3.806, -12.719)
+fov = 47.3
+
+[node name="sashaMainStage" parent="." instance=ExtResource("1_l63jw")]
+transform = Transform3D(-0.900319, 0, -0.435231, 0, 1, 0, 0.435231, 0, -0.900319, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.0186643, -0.60392, -0.796827, -0.220925, -0.779757, 0.585808, -0.975112, 0.165105, -0.147975, 0, 13.3667, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.889695, 0, 0.456555, 0, 1, 0, -0.456555, 0, 0.889695, 3.81989, 5.4948, 4.26639)
+light_energy = 16.0
+light_size = 0.287
+spot_range = 11.8389
+spot_angle = 42.4524
+
+[node name="uiDriver" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_vlxoi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="uiDriver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="uiDriver/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="uiDriver/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="uiDriver/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="uiDriver/HBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="uiDriver/HBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Toy Tower"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="uiDriver/HBoxContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="uiDriver/HBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="uiDriver/HBoxContainer/CenterContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="uiMainMenu" parent="uiDriver/HBoxContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer" instance=ExtResource("2_1kx0r")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="uiScores" parent="uiDriver/HBoxContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer" instance=ExtResource("3_dbccq")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.95117, -0.754815, 0)
+material_override = SubResource("StandardMaterial3D_nv3nv")
+mesh = SubResource("BoxMesh_q4lla")

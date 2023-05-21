@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6n7gtrebkw2f"]
+
+[ext_resource type="Script" path="res://scenes/common/gizmoBilliboard.gd" id="1_tig5s"]
+
+[node name="gizmoBilliboard" type="Node3D"]
+script = ExtResource("1_tig5s")
+
+[node name="Label3D" type="Label3D" parent="."]
+billboard = 1
+no_depth_test = true
+text = "- 15"
+font_size = 50
+outline_size = 9

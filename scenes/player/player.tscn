@@ -1,0 +1,154 @@
+[gd_scene load_steps=21 format=3 uid="uid://7gv6q50fuutj"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_jsnv8"]
+[ext_resource type="PackedScene" uid="uid://ccl7bh6jui1r0" path="res://scenes/ui/uiPlayer.tscn" id="2_2ndfv"]
+[ext_resource type="Script" path="res://scenes/player/playerInventory.gd" id="2_47gsl"]
+[ext_resource type="Script" path="res://scenes/player/playerVisualFPS.gd" id="3_7e1f2"]
+[ext_resource type="Script" path="res://scenes/player/playerAimPoint.gd" id="3_g1ays"]
+[ext_resource type="PackedScene" uid="uid://d0uv22ho6x4wr" path="res://scenes/turrent/turrent.tscn" id="3_snghn"]
+[ext_resource type="PackedScene" uid="uid://mrp6ae8ctlod" path="res://assets/blender/sasha.blend" id="4_gj22y"]
+[ext_resource type="PackedScene" uid="uid://bmvmgr53ake0c" path="res://scenes/turrent/rangeHalo.tscn" id="5_kjwlu"]
+[ext_resource type="PackedScene" uid="uid://bt2vcwe41g5x2" path="res://scenes/ui/uiPauseMenu.tscn" id="8_uobrf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rqwnu"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_imvib"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yu2w8"]
+animation = &"fps-attack"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_xdxfi"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8i0jc"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_yu2w8")
+nodes/Animation/position = Vector2(40, 160)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_xdxfi")
+nodes/TimeScale/position = Vector2(215.622, 153.065)
+nodes/output/position = Vector2(360, 140)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_obug1"]
+animation = &"fps-idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_236kr"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_16uws"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6cukq"]
+states/End/position = Vector2(452, 124)
+states/Start/position = Vector2(138, 124)
+states/fps-attack/node = SubResource("AnimationNodeBlendTree_8i0jc")
+states/fps-attack/position = Vector2(303, 14)
+states/fps-idle/node = SubResource("AnimationNodeAnimation_obug1")
+states/fps-idle/position = Vector2(303, 124)
+transitions = ["Start", "fps-idle", SubResource("AnimationNodeStateMachineTransition_236kr"), "fps-attack", "fps-idle", SubResource("AnimationNodeStateMachineTransition_16uws")]
+graph_offset = Vector2(-76, -70)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_j8wrk"]
+graph_offset = Vector2(-176.174, 10.9744)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_6cukq")
+nodes/StateMachine/position = Vector2(40, 120)
+node_connections = [&"output", 0, &"StateMachine"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_lsfcn"]
+
+[node name="playerRoot" type="Node3D"]
+
+[node name="player" type="CharacterBody3D" parent="."]
+script = ExtResource("1_jsnv8")
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_rqwnu")
+
+[node name="head" type="Node3D" parent="player"]
+
+[node name="ogCamera" type="Camera3D" parent="player/head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.681, 0)
+cull_mask = 1048573
+current = true
+
+[node name="gunRay" type="RayCast3D" parent="player/head/ogCamera"]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 0, -0.00588068, 0.463024)
+target_position = Vector3(6, 0, 0)
+collision_mask = 2
+
+[node name="yaw" type="Node3D" parent="player"]
+
+[node name="playerInventory" type="Node3D" parent="player" node_paths=PackedStringArray("uiPlayer", "uiPause", "playerAimPoint", "playerRotatingHead", "rangeHalo")]
+script = ExtResource("2_47gsl")
+uiPlayer = NodePath("../ui/uiPlayer")
+uiPause = NodePath("../ui/uiPauseMenu")
+scnTurrent = ExtResource("3_snghn")
+playerAimPoint = NodePath("../playerAimPoint")
+playerRotatingHead = NodePath("../head")
+rangeHalo = NodePath("../playerAimPoint/aimPoint/rangeHalo")
+
+[node name="playerAimPoint" type="Node3D" parent="player" node_paths=PackedStringArray("ray")]
+script = ExtResource("3_g1ays")
+ray = NodePath("../head/ogCamera/gunRay")
+
+[node name="aimPoint" type="MeshInstance3D" parent="player/playerAimPoint"]
+mesh = SubResource("PrismMesh_imvib")
+
+[node name="rangeHalo" parent="player/playerAimPoint/aimPoint" instance=ExtResource("5_kjwlu")]
+visible = false
+
+[node name="ui" type="Control" parent="player"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="player/ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="player/ui/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+gui_disable_input = true
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="gunCamera" type="Camera3D" parent="player/ui/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.681, 0)
+cull_mask = 2
+current = true
+
+[node name="visualFPS" type="Node3D" parent="player/ui/SubViewportContainer/SubViewport/gunCamera" node_paths=PackedStringArray("gunCamera", "ogCamera")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.681, 0)
+script = ExtResource("3_7e1f2")
+gunCamera = NodePath("..")
+ogCamera = NodePath("../../../../../head/ogCamera")
+
+[node name="AnimationTree" type="AnimationTree" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS"]
+tree_root = SubResource("AnimationNodeBlendTree_j8wrk")
+anim_player = NodePath("../model/sasha/AnimationPlayer")
+active = true
+parameters/StateMachine/playback = SubResource("AnimationNodeStateMachinePlayback_lsfcn")
+parameters/StateMachine/fps-attack/TimeScale/scale = 1.2
+
+[node name="model" type="Node3D" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS"]
+transform = Transform3D(-0.3, 0, -2.62268e-08, 0, 0.3, 0, 2.62268e-08, 0, -0.3, 0, 0, -0.145)
+
+[node name="sasha" parent="player/ui/SubViewportContainer/SubViewport/gunCamera/visualFPS/model" instance=ExtResource("4_gj22y")]
+
+[node name="uiPlayer" parent="player/ui" instance=ExtResource("2_2ndfv")]
+layout_mode = 1
+
+[node name="uiPauseMenu" parent="player/ui" instance=ExtResource("8_uobrf")]
+layout_mode = 1

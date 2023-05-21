@@ -1,0 +1,191 @@
+[gd_scene load_steps=24 format=3 uid="uid://d0uv22ho6x4wr"]
+
+[ext_resource type="Script" path="res://scenes/turrent/turrent.gd" id="1_hqkyu"]
+[ext_resource type="Script" path="res://scenes/turrent/turrentVisual.gd" id="1_xipwt"]
+[ext_resource type="PackedScene" uid="uid://bdsl2pmea5c1" path="res://assets/blender/turrent1.blend" id="2_ua7jh"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0onj3"]
+animation = &"turrent1-attack"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_va2v6"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_wc6ne"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_0onj3")
+nodes/Animation/position = Vector2(100, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_va2v6")
+nodes/TimeScale/position = Vector2(313, 161)
+nodes/output/position = Vector2(460, 160)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_no8nl"]
+animation = &"turrent1-idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sbvvl"]
+animation = &"turrent2-attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jejiq"]
+animation = &"turrent2-idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qe87y"]
+animation = &"turrent3-attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dm8bk"]
+animation = &"turrent3-idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yf33u"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5y2lm"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_srm71"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x552i"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n65rl"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_udk25"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jr47h"]
+states/End/position = Vector2(849, 152)
+states/Start/position = Vector2(297, 145)
+states/turrent1-attack/node = SubResource("AnimationNodeBlendTree_wc6ne")
+states/turrent1-attack/position = Vector2(667, 75)
+states/turrent1-idle/node = SubResource("AnimationNodeAnimation_no8nl")
+states/turrent1-idle/position = Vector2(476, 75)
+states/turrent2-attack/node = SubResource("AnimationNodeAnimation_sbvvl")
+states/turrent2-attack/position = Vector2(659, 152)
+states/turrent2-idle/node = SubResource("AnimationNodeAnimation_jejiq")
+states/turrent2-idle/position = Vector2(476, 152)
+states/turrent3-attack/node = SubResource("AnimationNodeAnimation_qe87y")
+states/turrent3-attack/position = Vector2(659, 225)
+states/turrent3-idle/node = SubResource("AnimationNodeAnimation_dm8bk")
+states/turrent3-idle/position = Vector2(476, 225)
+transitions = ["turrent2-attack", "turrent2-idle", SubResource("AnimationNodeStateMachineTransition_yf33u"), "turrent3-attack", "turrent3-idle", SubResource("AnimationNodeStateMachineTransition_5y2lm"), "turrent2-idle", "turrent2-attack", SubResource("AnimationNodeStateMachineTransition_srm71"), "turrent3-idle", "turrent3-attack", SubResource("AnimationNodeStateMachineTransition_x552i"), "turrent1-idle", "turrent1-attack", SubResource("AnimationNodeStateMachineTransition_n65rl"), "turrent1-attack", "turrent1-idle", SubResource("AnimationNodeStateMachineTransition_udk25")]
+graph_offset = Vector2(137, -29)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qrgwg"]
+graph_offset = Vector2(-243, 51)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_jr47h")
+nodes/StateMachine/position = Vector2(60, 120)
+node_connections = [&"output", 0, &"StateMachine"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_8u6is"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_facyv"]
+radius = 18.261
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v4bvr"]
+height = 0.786406
+radius = 0.608409
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wo8og"]
+size = Vector3(0.5, 0.763091, 0.5)
+
+[node name="turrent" type="Node3D"]
+script = ExtResource("1_hqkyu")
+
+[node name="timerRetarget" type="Timer" parent="."]
+autostart = true
+
+[node name="timerShoot" type="Timer" parent="."]
+
+[node name="visual" type="Node3D" parent="."]
+transform = Transform3D(0.32, 0, 5.59506e-08, 0, 0.32, 0, -5.59506e-08, 0, 0.32, 0, 0, 0)
+script = ExtResource("1_xipwt")
+
+[node name="turrent1" parent="visual" instance=ExtResource("2_ua7jh")]
+
+[node name="Cylinder003" parent="visual/turrent1/root/head1/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91764e-13, 0.995535, 0.808126)
+bone_idx = 2
+
+[node name="head1base" parent="visual/turrent1/root/head1/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0505991, -0.0138613)
+bone_idx = 3
+
+[node name="Cube001" parent="visual/turrent1/root/head1/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12392, -0.638572)
+bone_idx = 4
+
+[node name="Cylinder004" parent="visual/turrent1/root/head1/Skeleton3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.904565, 1.16739, -0.0138613)
+bone_idx = 5
+
+[node name="Skeleton3D" parent="visual/turrent1/root/head2" index="0"]
+bones/1/scale = Vector3(1, 1, 1)
+bones/3/scale = Vector3(1, 1, 1)
+
+[node name="Cylinder" parent="visual/turrent1/root/head2/Skeleton3D" index="0"]
+transform = Transform3D(1.52344, -9.68499e-08, 8.65977e-14, 9.68496e-08, 1.52344, 2.72413e-07, -1.4938e-13, -2.72413e-07, 1.52344, 0.830542, 1.25611, -0.291947)
+bone_idx = 2
+
+[node name="Cylinder002" parent="visual/turrent1/root/head2/Skeleton3D" index="1"]
+transform = Transform3D(1.52344, 9.68499e-08, -8.65977e-14, -9.68496e-08, 1.52344, 2.72413e-07, 1.4938e-13, -2.72413e-07, 1.52344, -0.830542, 1.25611, -0.291947)
+bone_idx = 4
+
+[node name="head2base" parent="visual/turrent1/root/head2/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.793776, 0.0376925)
+bone_idx = 5
+
+[node name="Cube003" parent="visual/turrent1/root/head2/Skeleton3D" index="3"]
+transform = Transform3D(1.52097, 0, 0, 0, 1.52097, 0, 0, 0, 1.52097, 0.853352, 1.26054, -0.527053)
+bone_idx = 6
+
+[node name="Cube004" parent="visual/turrent1/root/head2/Skeleton3D" index="4"]
+transform = Transform3D(1.52344, 0, 0, 0, 1.52344, 0, 0, 0, 1.52344, 0.482716, 1.2673, 1.39843)
+bone_idx = 7
+
+[node name="Cylinder005" parent="visual/turrent1/root/head3/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49648e-14, 1.34973, 1.12187)
+bone_idx = 2
+
+[node name="head3base" parent="visual/turrent1/root/head3/Skeleton3D" index="1"]
+transform = Transform3D(0.6222, 0, 0, 0, 3.49333, 0, 0, 0, 0.6222, 0, 0.848971, 0)
+bone_idx = 3
+
+[node name="Cylinder007" parent="visual/turrent1/root/head3/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21018, -0.255939)
+bone_idx = 4
+
+[node name="Cylinder006" parent="visual/turrent1/root/head3/Skeleton3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.785658, 1.39355, 0)
+bone_idx = 5
+
+[node name="AnimationTree" type="AnimationTree" parent="visual"]
+tree_root = SubResource("AnimationNodeBlendTree_qrgwg")
+anim_player = NodePath("../turrent1/AnimationPlayer")
+active = true
+parameters/StateMachine/playback = SubResource("AnimationNodeStateMachinePlayback_8u6is")
+parameters/StateMachine/turrent1-attack/TimeScale/scale = 2.0
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+target_position = Vector3(0, 0, 20)
+collision_mask = 2
+
+[node name="areaShootRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="areaShootRange"]
+shape = SubResource("SphereShape3D_facyv")
+
+[node name="areaBody" type="Area3D" parent="."]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="areaBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.970651, 0)
+shape = SubResource("CylinderShape3D_v4bvr")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.586, 0)
+shape = SubResource("BoxShape3D_wo8og")
+
+[editable path="visual/turrent1"]
