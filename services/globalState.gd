@@ -11,13 +11,13 @@ signal sig_round_advanced
 
 var game_state: GAME_STATE = GAME_STATE.PLAYING
 const winningRound = 8
-const cristalMaxHealth = 100
+const cristalMaxHealth = 200
 
 # rounds
 
 var round = 1
 var killedEnemies = 0
-var enemiesToSpawn = 1
+var enemiesToSpawn = 15 + round * 5
 var cristalHealth = cristalMaxHealth
 
 # player
@@ -84,7 +84,7 @@ func reset_game():
 	money = 110
 	round = 1
 	killedEnemies = 0
-	enemiesToSpawn = 1
+	enemiesToSpawn = 15 + round * 5
 	cristalHealth = cristalMaxHealth
 	
 	set_game_state(GAME_STATE.PLAYING)

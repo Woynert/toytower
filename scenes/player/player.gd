@@ -8,7 +8,7 @@ var mouseSensibility = 800
 var mouseRelativeX = 0
 var mouseRelativeY = 0
 
-const SPEED = 5.0
+const SPEED = 7.0
 const JUMP_VELOCITY = 4.5
 const GRAVITY = 10
 

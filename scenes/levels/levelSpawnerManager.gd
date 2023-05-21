@@ -73,7 +73,7 @@ func setup_round():
 	
 	currentEnemies = enemiesPerRound[difficulty]
 	enemiesSpawned = 0
-	GlobalState.setEnemiesToSpawn(1 + GlobalState.round * 5)
+	GlobalState.setEnemiesToSpawn(15 + GlobalState.round * 5)
 
 func _on_spawn_timeout():
 	
