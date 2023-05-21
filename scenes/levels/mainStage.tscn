@@ -1,13 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://bmy2o32g62fip"]
 
+[ext_resource type="Environment" uid="uid://by0f1x7o38mmj" path="res://mainEnv.tres" id="1_0ls35"]
 [ext_resource type="PackedScene" uid="uid://brsdovr5w0fe5" path="res://scenes/map/sashaMainStage.tscn" id="1_l63jw"]
 [ext_resource type="PackedScene" uid="uid://ofa5hq6n8tcb" path="res://scenes/ui/uiMainMenu.tscn" id="2_1kx0r"]
 [ext_resource type="Script" path="res://scenes/levels/uiDriver.gd" id="2_vlxoi"]
 [ext_resource type="PackedScene" uid="uid://t0occimcfq4g" path="res://scenes/ui/uiScores.tscn" id="3_dbccq"]
 
-[sub_resource type="Environment" id="Environment_57mir"]
-
 [node name="mainStage" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_0ls35")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.625, 3.806, -12.719)
@@ -17,7 +19,14 @@ fov = 47.3
 transform = Transform3D(-0.900319, 0, -0.435231, 0, 1, 0, 0.435231, 0, -0.900319, 0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.420351, -0.454808, -0.785146, -0.224217, -0.786407, 0.575579, -0.879222, 0.417988, 0.228591, 0, 13.3667, 0)
+transform = Transform3D(0.0186643, -0.60392, -0.796827, -0.220925, -0.779757, 0.585808, -0.975112, 0.165105, -0.147975, 0, 13.3667, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.889695, 0, 0.456555, 0, 1, 0, -0.456555, 0, 0.889695, 3.81989, 5.4948, 4.26639)
+light_energy = 16.0
+light_size = 0.287
+spot_range = 11.8389
+spot_angle = 42.4524
 
 [node name="uiDriver" type="Control" parent="."]
 layout_mode = 3
@@ -84,6 +93,3 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_57mir")

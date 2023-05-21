@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://7gv6q50fuutj" path="res://scenes/player/player.tscn" id="1_578s2"]
 [ext_resource type="Script" path="res://scenes/levels/levelSpawnerManager.gd" id="1_nln22"]
 [ext_resource type="Script" path="res://scenes/levels/levelDriver.gd" id="1_x43ip"]
+[ext_resource type="Environment" uid="uid://by0f1x7o38mmj" path="res://mainEnv.tres" id="2_ksckd"]
 [ext_resource type="PackedScene" uid="uid://bfqty2lqku5lg" path="res://scenes/enemy/enemy.tscn" id="2_u5goc"]
 [ext_resource type="PackedScene" uid="uid://danmvmwlt236" path="res://scenes/map/cristal.tscn" id="4_jcoe5"]
 [ext_resource type="PackedScene" uid="uid://b37v1ira76rl1" path="res://scenes/ui/uiLooseWin.tscn" id="5_8avs2"]
@@ -23,21 +24,22 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="Environment" id="Environment_gs2ph"]
-background_color = Color(0.666667, 0.956863, 1, 1)
-background_energy_multiplier = 0.18
-
 [node name="level1" type="Node3D"]
 script = ExtResource("1_x43ip")
 
 [node name="env" type="Node" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
-transform = Transform3D(0.933013, 0.258819, -0.25, 0.258819, 9.97209e-08, 0.965926, 0.25, -0.965926, -0.0669872, 0, 11, 0)
+transform = Transform3D(-0.58941, -0.729525, 0.346971, 0.454222, 0.0558997, 0.889133, -0.668041, 0.681666, 0.298418, 0, 11, 0)
+light_energy = 1.899
 shadow_enabled = true
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="env"]
 transform = Transform3D(0.938236, -0.226143, 0.261862, -0.0170327, 0.725732, 0.687767, -0.345575, -0.649748, 0.677056, 5.66073, 11, 7.92872)
+visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
+environment = ExtResource("2_ksckd")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -139,9 +141,6 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 win = false
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_gs2ph")
 
 [node name="gizmoBilliboard" parent="." instance=ExtResource("8_ixtqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.597048, 1.95598, -2.59811)

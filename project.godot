@@ -86,3 +86,4 @@ gm_escape={
 [rendering]
 
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(1, 1, 1, 1)
